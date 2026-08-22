@@ -1,0 +1,104 @@
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+@import "@fontsource/bebas-neue/400.css";
+@import "@fontsource/oswald/400.css";
+@import "@fontsource/oswald/500.css";
+@import "@fontsource/oswald/600.css";
+@import "@fontsource/oswald/700.css";
+@import "tailwindcss";
+
+@theme {
+  --color-tactical: #0D0D0D; /* Tactical Black */
+  --color-forest: #454B1B; /* Deep Green (Branding) */
+  --color-military-brown: #5C4033; /* Military Brown */
+  --color-safety: #FFC700; /* Safety Yellow (Action) - Adjusted to be more vibrant */
+  --color-emergency: #C41E3A; /* Action Red (High-Ticket) - Adjusted to be more premium */
+  --color-slate: #1A1A1A; /* Dark Slate for cards */
+  
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bebas Neue", "Oswald", ui-sans-serif, system-ui, sans-serif;
+}
+
+@utility bg-camo-green {
+  position: relative;
+  background-color: var(--color-forest);
+  overflow: hidden;
+  z-index: 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url('https://i.postimg.cc/rpCttFKC/army-camouflage-white-background.jpg');
+    background-repeat: repeat;
+    background-size: 400px;
+    background-blend-mode: multiply;
+    opacity: 0.15;
+    z-index: -1;
+    pointer-events: none;
+  }
+}
+
+@utility tactical-mosaic {
+  background-color: #454B1B;
+  background-image: 
+    linear-gradient(45deg, #323614 25%, transparent 25%, transparent 75%, #323614 75%, #323614),
+    linear-gradient(45deg, #323614 25%, transparent 25%, transparent 75%, #323614 75%, #323614);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+  opacity: 0.8;
+}
+
+@utility organic-camo {
+  background-color: #454B1B;
+  background-image: 
+    radial-gradient(circle at 20% 30%, #323614 10%, transparent 20%),
+    radial-gradient(circle at 70% 60%, #5d4037 15%, transparent 25%),
+    radial-gradient(circle at 40% 80%, #1a1c0b 12%, transparent 22%);
+  background-size: 200px 200px;
+}
+
+body {
+  background-color: var(--color-tactical);
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  font-weight: 500; /* Inter Medium (500) for body text */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html[lang="ru"] {
+  --display-weight: 500;
+  --display-scale: 0.75;
+}
+html:not([lang="ru"]) {
+  --display-weight: 700;
+  --display-scale: 1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight); /* Bebas Neue / Oswald */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+@layer base {
+  h1 { font-size: calc(clamp(1.875rem, 1.99vw + 1.41rem, 3rem) * var(--display-scale)); }
+  h2 { font-size: calc(clamp(1.5rem, 1.33vw + 1.19rem, 2.25rem) * var(--display-scale)); }
+  h3 { font-size: calc(clamp(1.125rem, 1.1vw + 0.87rem, 1.75rem) * var(--display-scale)); }
+  h4 { font-size: calc(clamp(1rem, 0.66vw + 0.85rem, 1.375rem) * var(--display-scale)); }
+  p { font-size: clamp(0.875rem, 0.44vw + 0.77rem, 1.125rem); }
+  small { font-size: clamp(0.6875rem, 0.33vw + 0.61rem, 0.875rem); }
+}
+
+#root {
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+}
+
+#root.fonts-loaded {
+  opacity: 1;
+}

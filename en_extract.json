@@ -1,0 +1,155 @@
+{
+  "home": {
+    "heroBadge": "LARGEST INDOOR SHOOTING RANGE IN SLOVAKIA",
+    "heroTitle": "SHOOT WITH WEAPONS",
+    "heroSubtitle": "EVEN WITHOUT A LICENSE",
+    "heroBullets": {
+      "safe": "100% SAFETY",
+      "instructors": "PROFESSIONAL INSTRUCTORS",
+      "arsenal": "WIDE ARSENAL OF WEAPONS"
+    },
+    "bookNow": "I WANT TO SHOOT",
+    "rating": "4.9/5 RATING FROM 1,000+ SHOOTERS",
+    "benefits": {
+      "weapons": "50+ WEAPONS",
+      "weaponsDesc": "Wide selection for everyone",
+      "distance": "UP TO 25 METERS",
+      "distanceDesc": "Modern indoor range",
+      "instructors": "PROFESSIONALS",
+      "instructorsDesc": "Experienced instructors",
+      "open": "OPEN DAILY",
+      "openDesc": "9:00 AM - 9:00 PM"
+    },
+    "pathfinder": {
+      "beginnerBadge": "BEGINNER",
+      "beginnerTitle": "I DON'T HAVE A LICENSE",
+      "beginnerDesc": "Never shot before? No problem! Our professional instructors will take care of you. You don't need a firearms license or your own weapon.",
+      "beginnerBtn": "I WANT TO SHOOT",
+      "proBadge": "PROFESSIONAL",
+      "proTitle": "I HAVE A LICENSE",
+      "proDesc": "Are you a firearms license holder? Book a shooting lane and train with your own weapon or rent from our arsenal.",
+      "proBtn": "ACCESS FOR LICENSE HOLDERS"
+    },
+    "process": {
+      "title": "How it",
+      "titleHighlight": "Works?",
+      "desc": "A simple process for anyone who wants to try shooting for the first time.",
+      "step1Title": "Reservation",
+      "step1Desc": "Choose a package or a date online or by phone.",
+      "step2Title": "Briefing",
+      "step2Desc": "Our instructor will familiarize you with safety and handling.",
+      "step3Title": "Experience",
+      "step3Desc": "The shooting itself under the constant supervision of a professional.",
+      "btn": "VIEW PACKAGES HERE"
+    },
+    "packages": {
+      "title": "Special",
+      "titleHighlight": "Offers",
+      "desc": "Our most popular experience packages for an unforgettable experience.",
+      "btn": "All packages",
+      "subtitle1": "IDEAL FOR BEGINNERS",
+      "subtitle2": "CZECH CLASSIC",
+      "subtitle3": "THE BEST OF OUR OFFER",
+      "highlights": {
+        "shots": "Number of shots",
+        "guns": "Weapons",
+        "instructor": "Instructor",
+        "instructorValue": "Expert guidance included",
+        "pkg1Shots": "30 shots",
+        "pkg1Guns": "Any .22LR weapon",
+        "pkg2Shots": "40 shots",
+        "pkg2Guns": "CZ512, CZ Shadow, CZ P-10C, CZ Scorpion",
+        "pkg3Shots": "48 shots",
+        "pkg3Guns": "Glock 19, STI Spartan, CZ EVO3, AR15, AK47"
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked",
+      "titleHighlight": "Questions",
+      "desc": "Everything you need to know before your visit.",
+      "items": [
+        {
+          "q": "Do I need a firearms license?",
+          "a": "No, you do not need a firearms license for experience shooting. A professional instructor will attend to you the entire time."
+        },
+        {
+          "q": "Can I bring my own weapon?",
+          "a": "Yes, if you hold a firearms license, you can bring your own weapon and ammunition."
+        },
+        {
+          "q": "From what age is shooting possible?",
+          "a": "Shooting is possible from 18 years of age. For youth from 12 to 18 years, shooting is possible exclusively accompanied by and with the consent of a legal guardian."
+        },
+        {
+          "q": "Do I need to book in advance?",
+          "a": "Yes, for the general public (without a firearms license) it is necessary to book a specific date in advance."
+        }
+      ]
+    },
+    "map": {
+      "title": "Where to",
+      "titleHighlight": "Find Us",
+      "addressTitle": "ADDRESS",
+      "address": "Kamenné námestie 1A (OD PRIOR), 811 08 Bratislava\nThe entrance to the shooting range is from Kamenné square\nThe shooting range is located on the -2nd floor",
+      "hoursTitle": "OPENING HOURS",
+      "open": "OPEN NOW",
+      "closed": "CLOSED",
+      "hours": "Monday - Sunday: 09:00 - 21:00",
+      "navBtn": "NAVIGATE: KAMENNÉ NÁMESTIE"
+    },
+    "modal": {
+      "content": "Package content:",
+      "includes": "The package also includes:",
+      "inc1": "shooting range entry",
+      "inc2": "instructor",
+      "inc3": "targets",
+      "inc4": "protective gear",
+      "reserveBtn": "RESERVE BY PHONE"
+    },
+    "packageCard": {
+      "popularBadge": "MOST POPULAR PACKAGE",
+      "standardBadge": "SHOOTING PACKAGE",
+      "perPerson": "/ Person",
+      "buyBtn": "Buy",
+      "moreInfoBtn": "More info"
+    }
+  },
+  "footer": {
+    "about": "The largest and most modern indoor shooting range in Slovakia. We offer a professional approach, a wide arsenal of weapons, and a safe environment for both beginners and professionals.",
+    "navigation": "Navigation",
+    "hours": "Opening Hours",
+    "monSun": "Monday - Sunday:",
+    "monFri": "Monday - Friday:",
+    "satSun": "Saturday - Sunday:",
+    "warning": "Shooting ends no later than 30 minutes before closing time!",
+    "contact": "Contact",
+    "contactPlace": "Contact Place",
+    "phone": "Phone Contact",
+    "billing": "Billing Details",
+    "rights": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms and Conditions",
+    "ico": "Company ID",
+    "dic": "VAT ID",
+    "license": "Firearms License"
+  },
+  "showcaseCard": {
+    "subtitle": "SHOOTING PACKAGE",
+    "content": "Package contents",
+    "less": "Less",
+    "more": "More",
+    "perPerson": "/ Person",
+    "moreInfo": "More info",
+    "buy": "Buy"
+  },
+  "modal": {
+    "orderTitle": "Order",
+    "orderDesc1": "Currently, orders are only possible ",
+    "orderDesc2": "by phone",
+    "orderDesc3": ". Our team will be happy to help you with your selection.",
+    "resTitle": "Appointment Reservation",
+    "resDesc1": "FOR THE GENERAL PUBLIC, IT IS NECESSARY TO BOOK AN APPOINTMENT IN ADVANCE.",
+    "resDesc2": "Shooting packages can be completed from 10:00 to 16:00 and on weekends by appointment.",
+    "weAreHere": "We are here for you: MON-SUN 9:00 - 21:00"
+  }
+}

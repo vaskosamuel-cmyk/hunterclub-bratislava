@@ -1,0 +1,42 @@
+backend:
+  name: git-gateway
+  branch: main # Zmeň na 'master' ak používaš staršie označenie
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "aktuality"
+    label: "Aktuality (Žlté okno)"
+    folder: "public/content/aktuality"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: "json"
+    format: "json"
+    fields:
+      - {label: "Nadpis", name: "title", widget: "string"}
+      - {label: "Dátum", name: "date", widget: "datetime", format: "DD.MM.YYYY"}
+      - {label: "Text oznamu", name: "body", widget: "text"}
+
+  - name: "psychotesty"
+    label: "Termíny psychotestov"
+    folder: "public/content/psychotesty"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: "json"
+    format: "json"
+    fields:
+      - {label: "Zobrazený text termínu (napr. 18.3.2026 o 8:30)", name: "date_text", widget: "string"}
+      - {label: "Dátum pre zoradenie", name: "sort_date", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ"}
+
+  - name: "teoria"
+    label: "Termíny teoretickej prípravy"
+    folder: "public/content/teoria"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: "json"
+    format: "json"
+    fields:
+      - {label: "Zobrazený text termínu (napr. 27.5.2026 od 17:00 - 20:00 (streda))", name: "date_text", widget: "string"}
+      - {label: "Dátum pre zoradenie", name: "sort_date", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ"}
+
