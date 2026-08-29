@@ -131,171 +131,22 @@ export default function Layout() {
   }, []);
 
   const navigation = [
+    { name: 'STRELNICA', href: '/strelnica', type: 'link' },
     { 
-      name: 'STRELNICA',
-      href: '/strelnica',
+      name: 'KURZY', 
+      href: '/kurzy',
       type: 'dropdown',
       dropdown: [
-        { name: 'O STRELNICI', href: '/strelnica#o-nas' },
-        { name: 'NAŠE ZÁZEMIE', href: '/strelnica#zazemie' },
-        { name: 'ZBRANE A VYBAVENIE', href: '/cennik' },
-        { name: 'AKO SA K NÁM DOSTANETE', href: '/kontakt' }
-      ],
-      dropdownBottom: { text: 'Bratislava', icon: MapPin, href: '/kontakt' }
-    },
-    { 
-      name: 'KURZY',
-      href: '/kurzy',
-      type: 'mega-medium',
-      dropdown: [
-        { name: 'Príprava na Zbrojný Preukaz', href: '/zbrojny-preukaz' },
+        { name: 'Zbrojný preukaz', href: '/zbrojny-preukaz' },
         { name: 'Teoretická príprava', href: '/teoreticka-priprava' },
         { name: 'Psychotesty', href: '/psychotesty' },
         { name: 'Základný kurz streľby', href: '/zakladny-kurz' },
-        { name: 'Taktický výcvik', href: '/takticky-vycvik' },
-        { name: 'Individuálny tréning', href: '/kontakt' }
-      ],
-      megaMenu: {
-        title: 'Vzdelávanie, bezpečnosť a strelecké zručnosti',
-        cols: [
-          {
-            title: 'ZBROJNÝ PREUKAZ',
-            items: [
-              { name: 'Príprava na ZP', icon: Shield, href: '/zbrojny-preukaz' },
-              { name: 'Teoretická príprava', icon: BookOpen, href: '/teoreticka-priprava' },
-              { name: 'Psychotesty', icon: Brain, href: '/psychotesty' }
-            ]
-          },
-          {
-            title: 'STRELECKÉ TRÉNINGY',
-            items: [
-              { name: 'Základný kurz streľby', icon: Target, href: '/zakladny-kurz' },
-              { name: 'Taktický výcvik', icon: Crosshair, href: '/takticky-vycvik' },
-              { name: 'Individuálny tréning', icon: User, href: '/kontakt' }
-            ]
-          }
-        ],
-        bottomBar: 'Profesionálni inštruktori · Bezpečnosť · Prax',
-        allLink: { name: 'VŠETKY KURZY', href: '/kurzy' },
-        promo: {
-          title: 'Príprava na ZP',
-          subtitle: 'KOMPLETNÝ BALÍČEK',
-          icon: ShieldCheck,
-          accentColor: '#FBBF24',
-          bg: 'bg-zinc-950',
-          hoverBg: 'hover:bg-zinc-900',
-          textColor: 'text-white',
-          linkText: 'Zobraziť kurz',
-          href: '/zbrojny-preukaz'
-        }
-      }
-    },
-    { 
-      name: 'STRELECKÉ BALÍČKY',
-      href: '/strelecke-balicky',
-      type: 'mega-dynamic',
-      dropdown: [
-        { name: 'Všetky balíčky', href: '/strelecke-balicky' },
-        { name: 'Balíček Štandard', href: '/strelecke-balicky' },
-        { name: 'Balíček Akcia', href: '/strelecke-balicky' },
-        { name: 'Balíček VIP', href: '/strelecke-balicky' },
-        { name: 'Balíček Rande', href: '/strelecke-balicky' }
-      ],
-      megaMenu: {
-        sidebarLinks: [
-          { id: 'vsetky', name: 'Všetky balíčky', icon: LayoutGrid, href: '/strelecke-balicky' },
-          { id: 'jednotlivci', name: 'Pre jednotlivcov', icon: User, href: '/strelecke-balicky#jednotlivci' },
-          { id: 'pary', name: 'Pre páry', icon: Users, href: '/strelecke-balicky#pary' },
-          { id: 'skupiny', name: 'Pre skupiny', icon: Users, href: '/strelecke-balicky#skupiny' }
-        ],
-        content: {
-          'vsetky': {
-            title: 'NAJOBĽÚBENEJŠIE BALÍČKY',
-            subtitle: 'Zážitková streľba pre jednotlivcov, páry aj skupiny.',
-            items: [
-              { name: 'BALÍČEK ŠTANDARD', desc: 'Základný zážitok', icon: Target, href: '/strelecke-balicky' },
-              { name: 'BALÍČEK AKCIA', desc: 'Viac zbraní, viac streľby', icon: Crosshair, href: '/strelecke-balicky' },
-              { name: 'BALÍČEK VIP', desc: 'Prémiový zážitok', icon: Award, href: '/strelecke-balicky' },
-              { name: 'BALÍČEK RANDE', desc: 'Zážitok pre dvoch', icon: Users, href: '/strelecke-balicky' }
-            ],
-            allLink: { name: 'Všetky balíčky', href: '/strelecke-balicky' }
-          },
-          'jednotlivci': {
-            title: 'PRE JEDNOTLIVCOV',
-            subtitle: 'Zážitková streľba pre jedného.',
-            items: [
-              { name: 'BALÍČEK ŠTANDARD', desc: 'Základný zážitok', icon: Target, href: '/strelecke-balicky' },
-              { name: 'BALÍČEK AKCIA', desc: 'Viac zbraní', icon: Crosshair, href: '/strelecke-balicky' },
-              { name: 'BALÍČEK VIP', desc: 'Prémiový individuálny zážitok', icon: Award, href: '/strelecke-balicky' }
-            ],
-            allLink: { name: 'Zobraziť všetky balíčky pre jednotlivcov', href: '/strelecke-balicky#jednotlivci' }
-          },
-          'pary': {
-            title: 'PRE PÁRY',
-            subtitle: 'Zážitok, ktorý si užijete spolu.',
-            items: [
-              { name: 'BALÍČEK RANDE', desc: 'Netradičný zážitok vo dvojici', icon: Users, href: '/strelecke-balicky' },
-              { name: 'BALÍČEK DUO', desc: 'Spoločná strelecká výzva', icon: Crosshair, href: '/strelecke-balicky' }
-            ],
-            allLink: { name: 'Zobraziť balíčky pre páry', href: '/strelecke-balicky#pary' }
-          },
-          'skupiny': {
-            title: 'PRE SKUPINY',
-            subtitle: 'Streľba pre partie a väčšie skupiny.',
-            items: [
-              { name: 'SKUPINOVÝ BALÍČEK', desc: 'Strelecký zážitok pre partiu', icon: Users, href: '/strelecke-balicky' },
-              { name: 'TEAMBUILDING', desc: 'Firemná akcia na strelnici', icon: Briefcase, href: '/strelecke-balicky' }
-            ],
-            allLink: { name: 'Prezerať skupinové balíčky', href: '/strelecke-balicky#skupiny' }
-          }
-        },
-        banners: [
-          {
-            title: 'Darčekové Poukazy',
-            icon: Gift,
-            accentColor: '#FBBF24',
-            bg: 'bg-[#0f0f0f]',
-            textColor: 'text-black',
-            hoverBg: 'hover:bg-yellow-400',
-            linkText: 'Kúpiť poukaz',
-            href: '/darcekovy-poukaz'
-          },
-          {
-            title: 'Teambuilding',
-            subtitle: 'Pre firmy a skupiny',
-            icon: Users,
-            accentColor: '#22c55e',
-            bg: 'bg-[#1a1f1a]',
-            textColor: 'text-white',
-            hoverBg: 'hover:bg-green-800',
-            linkText: 'Zistiť viac',
-            href: '/strelecke-balicky'
-          }
-        ]
-      }
-    },
-    { 
-      name: 'CENNÍK', 
-      href: '/cennik',
-      type: 'link'
-    },
-    { 
-      name: 'ŠPORTOVÝ KLUB', 
-      href: '/sportovy-klub-hdi',
-      type: 'dropdown',
-      dropdown: [
-        { name: 'O KLUBE', href: '/sportovy-klub-hdi' },
-        { name: 'ČLENSTVO', href: '/sportovy-klub-hdi#clenstvo' },
-        { name: 'TRÉNINGY', href: '/sportovy-klub-hdi#treningy' },
-        { name: 'KALENDÁR', href: '/sportovy-klub-hdi#kalendar' },
-        { name: 'PRETEKÁRI', href: '/sportovy-klub-hdi#pretekari' }
+        { name: 'Taktický výcvik', href: '/takticky-vycvik' }
       ]
     },
-    { 
-      name: 'KONTAKT', 
-      href: '/kontakt',
-      type: 'link'
-    }
+    { name: 'STRELECKÉ BALÍČKY', href: '/strelecke-balicky', type: 'link' },
+    { name: 'CENNÍK', href: '/cennik', type: 'link' },
+    { name: 'ŠPORTOVÝ KLUB', href: '/sportovy-klub-hdi', type: 'link' }
   ];
 
   return (
@@ -356,7 +207,7 @@ export default function Layout() {
                   return (
                   <div 
                     key={item.name} 
-                    className="group h-full flex items-center"
+                    className="group h-full flex items-center relative"
                     onMouseEnter={() => setClosedDropdowns(prev => ({ ...prev, [item.name]: false }))}
                     onMouseLeave={() => {
                         setClosedDropdowns(prev => ({ ...prev, [item.name]: false }));
@@ -385,7 +236,7 @@ export default function Layout() {
                     
                     {/* Dropdowns */}
                     {item.type !== 'link' && !closedDropdowns[item.name] && (
-                      <div className="absolute top-full left-0 w-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100] flex justify-center">
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100]">
                         
                         {/* SMALL DROPDOWN */}
                         {item.type === 'dropdown' && item.dropdown && (
@@ -656,7 +507,7 @@ export default function Layout() {
               </div>
             </div>
 
-            <div className="md:hidden flex items-center gap-4 ml-auto">
+            <div className="xl:hidden flex items-center gap-4 ml-auto">
               <div className="relative">
                 <button 
                   onClick={() => setIsLangOpen(!isLangOpen)}
@@ -724,7 +575,7 @@ export default function Layout() {
 
         {/* Mobile menu */}
         {isMenuOpen && (
-          <div className="md:hidden bg-[var(--color-forest)]/95 backdrop-blur-xl border-t border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden">
+          <div className="xl:hidden bg-[var(--color-forest)]/95 backdrop-blur-xl border-t border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 skew-x-[20deg] translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-[var(--color-safety)]/5 skew-x-[-20deg] -translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
             

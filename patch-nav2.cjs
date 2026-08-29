@@ -8,6 +8,7 @@ const simpleNav = `const navigation = [
     { 
       name: 'STRELNICA', 
       href: '/strelnica',
+      type: 'dropdown',
       dropdown: [
         { name: 'O STRELNICI', href: '/strelnica#o-nas' },
         { name: 'NAŠE ZÁZEMIE', href: '/strelnica#zazemie' },
@@ -18,6 +19,7 @@ const simpleNav = `const navigation = [
     { 
       name: 'KURZY', 
       href: '/kurzy',
+      type: 'dropdown',
       dropdown: [
         { name: 'Zbrojný preukaz', href: '/zbrojny-preukaz' },
         { name: 'Teoretická príprava', href: '/teoreticka-priprava' },
@@ -29,6 +31,7 @@ const simpleNav = `const navigation = [
     { 
       name: 'STRELECKÉ BALÍČKY', 
       href: '/strelecke-balicky',
+      type: 'dropdown',
       dropdown: [
         { name: 'Všetky balíčky', href: '/strelecke-balicky' },
         { name: 'Pre jednotlivcov', href: '/strelecke-balicky#jednotlivci' },
@@ -36,10 +39,11 @@ const simpleNav = `const navigation = [
         { name: 'Pre skupiny', href: '/strelecke-balicky#skupiny' }
       ]
     },
-    { name: 'CENNÍK', href: '/cennik' },
+    { name: 'CENNÍK', href: '/cennik', type: 'link' },
     { 
       name: 'ŠPORTOVÝ KLUB', 
       href: '/sportovy-klub-hdi',
+      type: 'dropdown',
       dropdown: [
         { name: 'O KLUBE', href: '/sportovy-klub-hdi' },
         { name: 'ČLENSTVO', href: '/sportovy-klub-hdi#clenstvo' },
@@ -48,7 +52,7 @@ const simpleNav = `const navigation = [
         { name: 'PRETEKÁRI', href: '/sportovy-klub-hdi#pretekari' }
       ]
     },
-    { name: 'KONTAKT', href: '/kontakt' }
+    { name: 'KONTAKT', href: '/kontakt', type: 'link' }
   ];`;
 
 code = code.substring(0, navStart) + simpleNav + code.substring(navEnd);
