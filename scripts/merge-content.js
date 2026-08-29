@@ -32,14 +32,20 @@ function mergeFolder(folderName, outputFileName, sortFn) {
 
 // 1. Merge Aktuality (sort by date descending - newest first)
 mergeFolder('aktuality', 'aktuality.json', (a, b) => {
-  // Aktuality dates are in format DD.MM.YYYY (from config.yml)
+  // Aktuality dates are in format DD.MM.YYYY or DD/MM/YYYY (from config.yml)
   const parseDate = (dateStr) => {
     if (!dateStr) return 0;
-    const parts = dateStr.split('.');
-    if (parts.length === 3) {
-      return new Date(`${parts[2]}-${parts[1]}-${parts[0]}`).getTime();
+    const str = String(dateStr).trim();
+    
+    // Check for DD.MM.YYYY or DD/MM/YYYY (with optional time after)
+    const match = str.match(/^(\d{1,2})[\.\/](\d{1,2})[\.\/](\d{4})/);
+    if (match) {
+      const [_, day, month, year] = match;
+      return new Date(`${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`).getTime();
     }
-    return new Date(dateStr).getTime();
+    
+    // Fallback standard JS parsing (e.g. for ISO strings)
+    return new Date(str).getTime() || 0;
   };
   return parseDate(b.date) - parseDate(a.date);
 });

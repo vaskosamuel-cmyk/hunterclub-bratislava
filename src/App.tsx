@@ -23,6 +23,7 @@ import DarcekovyPoukaz from './pages/DarcekovyPoukaz';
 import Psychotesty from './pages/Psychotesty';
 import ZakladnyKurz from './pages/ZakladnyKurz';
 import TeoretickaPriprava from './pages/TeoretickaPriprava';
+import Teambuilding from './pages/Teambuilding';
 
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 
@@ -147,6 +148,7 @@ export default function App() {
                   <Route path="psychotesty" element={<Psychotesty />} />
                   <Route path="zakladny-kurz" element={<ZakladnyKurz />} />
                   <Route path="teoreticka-priprava" element={<TeoretickaPriprava />} />
+                  <Route path="teambuilding" element={<Teambuilding />} />
                 </Route>
                 <Route path="*" element={<NotFoundRedirect />} />
               </Routes>
