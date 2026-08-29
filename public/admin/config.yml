@@ -15,7 +15,6 @@ collections:
     format: "json"
     fields:
       - {label: "Nadpis", name: "title", widget: "string"}
-      - {label: "Dátum", name: "date", widget: "datetime", format: "DD.MM.YYYY"}
       - {label: "Text oznamu", name: "body", widget: "text"}
 
   - name: "psychotesty"

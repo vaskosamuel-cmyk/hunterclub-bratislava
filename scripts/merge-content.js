@@ -16,7 +16,9 @@ function mergeFolder(folderName, outputFileName, sortFn) {
   for (const file of files) {
     try {
       const content = fs.readFileSync(path.join(dir, file), 'utf-8');
-      items.push(JSON.parse(content));
+      const parsed = JSON.parse(content);
+      parsed._filename = file; // Inject filename for sorting if needed
+      items.push(parsed);
     } catch (err) {
       console.error(`Error reading ${file} from ${folderName}:`, err);
     }
@@ -26,7 +28,13 @@ function mergeFolder(folderName, outputFileName, sortFn) {
     items.sort(sortFn);
   }
 
-  fs.writeFileSync(outputFile, JSON.stringify(items, null, 2));
+  // Remove _filename before writing
+  const cleanItems = items.map(item => {
+    const { _filename, ...rest } = item;
+    return rest;
+  });
+
+  fs.writeFileSync(outputFile, JSON.stringify(cleanItems, null, 2));
   console.log(`Successfully merged ${folderName} JSON files into ${outputFileName}.`);
 }
 
@@ -43,9 +51,9 @@ function parseDate(dateStr) {
   return isNaN(fallback) ? 0 : fallback;
 }
 
-// 1. Merge Aktuality (sort by date descending - newest first)
+// 1. Merge Aktuality (sort by filename descending since format is YYYY-MM-DD)
 mergeFolder('aktuality', 'aktuality.json', (a, b) => {
-  return parseDate(b.date) - parseDate(a.date);
+  return b._filename.localeCompare(a._filename);
 });
 
 // 2. Merge Psychotesty (sort by sort_date ascending - closest upcoming first)
