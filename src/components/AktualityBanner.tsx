@@ -6,7 +6,7 @@ export default function AktualityBanner() {
   const [aktuality, setAktuality] = useState<{text: string} | null>(null);
 
   useEffect(() => {
-    fetch(`/content/aktuality/oznam.json?t=${new Date().getTime()}`)
+    fetch(`/content/aktuality.json?t=${new Date().getTime()}`)
       .then(async res => {
         if (!res.ok) return null;
         const text = await res.text();
@@ -17,7 +17,12 @@ export default function AktualityBanner() {
         }
       })
       .then(data => {
-        if (data && data.text && data.text.trim() !== '') {
+        // Since we are reading from aktuality.json which is a merged array,
+        // we take the first item (newest) if it exists.
+        if (Array.isArray(data) && data.length > 0 && data[0].text && data[0].text.trim() !== '') {
+          setAktuality(data[0]);
+        } else if (!Array.isArray(data) && data && data.text && data.text.trim() !== '') {
+          // Fallback if it somehow reads a single object
           setAktuality(data);
         } else {
           setAktuality(null);
