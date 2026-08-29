@@ -8,14 +8,14 @@ public_folder: "/images/uploads"
 collections:
   - name: "aktuality"
     label: "Aktuality (Žlté okno)"
-    folder: "public/content/aktuality"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    extension: "json"
-    format: "json"
-    fields:
-      - {label: "Nadpis", name: "title", widget: "string"}
-      - {label: "Text oznamu", name: "body", widget: "text"}
+    files:
+      - name: "oznam"
+        label: "Aktuálny oznam"
+        file: "public/content/aktuality-banner.json"
+        fields:
+          - {label: "Zobraziť oznam (žlté okno)", name: "show", widget: "boolean", default: true}
+          - {label: "Nadpis (voliteľné)", name: "title", widget: "string", required: false}
+          - {label: "Text oznamu", name: "body", widget: "text", required: false}
 
   - name: "psychotesty"
     label: "Termíny psychotestov"

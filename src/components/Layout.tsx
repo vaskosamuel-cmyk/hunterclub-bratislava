@@ -1,5 +1,5 @@
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, GraduationCap, Briefcase, LayoutGrid, ShieldCheck, Tag, Award, Calendar, User, Users, CheckCircle, ArrowRight, X, MapPin, Phone, Mail, ChevronRight, MessageSquare, ChevronDown, Globe, Shield, Target, BookOpen, Brain, Crosshair, Gift, ArrowRight } from 'lucide-react';
+import { Menu, GraduationCap, Briefcase, LayoutGrid, ShieldCheck, Tag, Award, Calendar, User, Users, CheckCircle, ArrowRight, X, MapPin, Phone, Mail, ChevronRight, MessageSquare, ChevronDown, Globe, Shield, Target, BookOpen, Brain, Crosshair, Gift } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { clsx } from 'clsx';
 import { motion, AnimatePresence } from 'motion/react';
@@ -58,7 +58,6 @@ export default function Layout() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [aktualityData, setAktualityData] = useState<any>(null);
-  const [translatedAktuality, setTranslatedAktuality] = useState<Record<string, string>>({});
   const [closedDropdowns, setClosedDropdowns] = useState<Record<string, boolean>>({});
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState<Record<string, boolean>>({});
@@ -68,46 +67,22 @@ export default function Layout() {
   const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
-    fetch('/content/aktuality.json')
-      .then(res => res.json())
-      .then(async data => {
-        if (data && data.length > 0) {
-          const item = data[0];
-          setAktualityData(item);
-          
-          const translations: Record<string, string> = {};
-          
-          if (item.body) {
-            // Translate to English
-            try {
-              const resEn = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=sk&tl=en&dt=t&q=${encodeURIComponent(item.body)}`);
-              const dataEn = await resEn.json();
-              translations.en = dataEn[0].map((x: any) => x[0]).join('');
-            } catch (e) {
-              console.error("Auto-translate EN failed", e);
-            }
-            
-            // Translate to German
-            try {
-              const resDe = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=sk&tl=de&dt=t&q=${encodeURIComponent(item.body)}`);
-              const dataDe = await resDe.json();
-              translations.de = dataDe[0].map((x: any) => x[0]).join('');
-            } catch (e) {
-              console.error("Auto-translate DE failed", e);
-            }
-          }
-          
-          setTranslatedAktuality(translations);
+    fetch(`/content/aktuality-banner.json?t=${new Date().getTime()}`)
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to fetch aktuality');
+        return res.json();
+      })
+      .then(data => {
+        if (data && data.show !== false && ((data.body && data.body.trim() !== '') || (data.title && data.title.trim() !== ''))) {
+          setAktualityData(data);
+        } else {
+          setAktualityData(null);
         }
       })
       .catch(err => console.error("Error loading aktuality:", err));
   }, []);
 
-  const currentAktualityMessage = aktualityData 
-    ? (language === 'en' && translatedAktuality.en) ? translatedAktuality.en
-    : (language === 'de' && translatedAktuality.de) ? translatedAktuality.de
-    : aktualityData.body
-    : null;
+  const currentAktualityMessage = aktualityData ? (aktualityData.body || aktualityData.title) : null;
 
   const handleLanguageChange = (lang: string) => {
     setLanguage(lang as any);
@@ -555,6 +530,7 @@ export default function Layout() {
         </div>
 
         {/* Announcement Bar */}
+        {currentAktualityMessage && (
         <div className="bg-[var(--color-safety)] text-[var(--color-tactical)] py-2.5 md:py-3 lg:py-4 border-t border-black/10 relative overflow-hidden shrink-0 shadow-lg">
           <div className="absolute inset-0 bg-white/10 animate-pulse"></div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -567,12 +543,12 @@ export default function Layout() {
                 <div className="w-1.5 h-1.5 bg-[var(--color-tactical)] rounded-full animate-ping"></div>
               </div>
               <p className="text-xs md:text-base font-bold tracking-wide max-w-3xl leading-snug">
-                {currentAktualityMessage || t('announcementText')}
+                {currentAktualityMessage}
               </p>
             </div>
           </div>
         </div>
-
+        )}
         {/* Mobile menu */}
         {isMenuOpen && (
           <div className="xl:hidden bg-[var(--color-forest)]/95 backdrop-blur-xl border-t border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden">
