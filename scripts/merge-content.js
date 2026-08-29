@@ -51,7 +51,6 @@ function parseDate(dateStr) {
   return isNaN(fallback) ? 0 : fallback;
 }
 
-// 1. Aktuality is now a single file collection (aktuality-banner.json), no merging needed.
 
 // 2. Merge Psychotesty (sort by sort_date ascending - closest upcoming first)
 mergeFolder('psychotesty', 'psychotesty.json', (a, b) => {

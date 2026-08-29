@@ -11,11 +11,11 @@ collections:
     files:
       - name: "oznam"
         label: "Aktuálny oznam"
-        file: "public/content/aktuality-banner.json"
+        file: "public/content/aktuality.json"
         fields:
-          - {label: "Zobraziť oznam (žlté okno)", name: "show", widget: "boolean", default: true}
-          - {label: "Nadpis (voliteľné)", name: "title", widget: "string", required: false}
-          - {label: "Text oznamu", name: "body", widget: "text", required: false}
+          - {label: "Zobraziť oznam", name: "show", widget: "boolean", default: true}
+          - {label: "Text oznamu", name: "text", widget: "string"}
+
 
   - name: "psychotesty"
     label: "Termíny psychotestov"
