@@ -6,7 +6,7 @@ export default function AktualityBanner() {
   const [aktuality, setAktuality] = useState<{text: string} | null>(null);
 
   useEffect(() => {
-    fetch(`/content/aktuality/oznam.json?t=${new Date().getTime()}`)
+    fetch(`/content/aktuality.json?t=${new Date().getTime()}`)
       .then(async res => {
         if (!res.ok) return null;
         const text = await res.text();
