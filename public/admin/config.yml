@@ -9,14 +9,12 @@ collections:
   - name: "aktuality"
     label: "Aktuality (Žlté okno)"
     folder: "public/content/aktuality"
-    create: false
-    delete: false
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     extension: "json"
     format: "json"
     fields:
-      - {label: "Sem napíšte text. Ak vymažete, pás zmizne:", name: "text", widget: "text", required: false}
-
-
+      - {label: "Text oznamu", name: "text", widget: "string", required: false}
   - name: "psychotesty"
     label: "Termíny psychotestov"
     folder: "public/content/psychotesty"

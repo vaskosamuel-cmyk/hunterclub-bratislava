@@ -61,3 +61,9 @@ mergeFolder('psychotesty', 'psychotesty.json', (a, b) => {
 mergeFolder('teoria', 'teoria.json', (a, b) => {
   return parseDate(a.sort_date) - parseDate(b.sort_date);
 });
+
+// 4. Merge Aktuality
+mergeFolder('aktuality', 'aktuality.json', (a, b) => {
+  // Sort by filename (which will have date) descending, so newest first
+  return b._filename.localeCompare(a._filename);
+});
