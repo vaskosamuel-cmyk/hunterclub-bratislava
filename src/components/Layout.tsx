@@ -67,7 +67,7 @@ export default function Layout() {
   const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
-    fetch('/content/aktuality.json')
+    fetch(`/content/aktuality.json?t=${new Date().getTime()}`)
       .then(res => res.json())
       .then(async data => {
         if (data && data.length > 0) {
