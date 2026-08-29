@@ -3,7 +3,7 @@ import { Megaphone } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 export default function AktualityBanner() {
-  const [aktuality, setAktuality] = useState<{show: boolean, text: string} | null>(null);
+  const [aktuality, setAktuality] = useState<{text: string} | null>(null);
 
   useEffect(() => {
     fetch(`/content/aktuality/oznam.json?t=${new Date().getTime()}`)
@@ -17,7 +17,7 @@ export default function AktualityBanner() {
         }
       })
       .then(data => {
-        if (data && data.show && data.text && data.text.trim() !== '') {
+        if (data && data.text && data.text.trim() !== '') {
           setAktuality(data);
         } else {
           setAktuality(null);

@@ -13,10 +13,9 @@ collections:
     delete: false
     extension: "json"
     format: "json"
+    slug: "oznam"
     fields:
-      - {label: "Názov (Nemeňte)", name: "title", widget: "string", default: "Aktuálny oznam"}
-      - {label: "Zobraziť oznam", name: "show", widget: "boolean", default: true}
-      - {label: "Text oznamu", name: "text", widget: "text"}
+      - {label: "Text oznamu", name: "text", widget: "text", required: false}
 
 
   - name: "psychotesty"
