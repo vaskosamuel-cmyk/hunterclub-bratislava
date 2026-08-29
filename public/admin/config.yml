@@ -12,9 +12,10 @@ collections:
       - name: "oznam"
         label: "Aktuálny oznam"
         file: "public/content/aktuality.json"
+        format: "json"
         fields:
-          - {label: "Zobraziť oznam", name: "show", widget: "boolean", default: true}
-          - {label: "Text oznamu", name: "text", widget: "string"}
+          - {label: "Zobraziť oznam", name: "show", widget: "boolean", default: false, required: false}
+          - {label: "Text oznamu", name: "text", widget: "text", required: false}
 
 
   - name: "psychotesty"

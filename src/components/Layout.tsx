@@ -1,3 +1,4 @@
+import AktualityBanner from "./AktualityBanner";
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, GraduationCap, Briefcase, LayoutGrid, ShieldCheck, Tag, Award, Calendar, User, Users, CheckCircle, ArrowRight, X, MapPin, Phone, Mail, ChevronRight, MessageSquare, ChevronDown, Globe, Shield, Target, BookOpen, Brain, Crosshair, Gift } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
@@ -124,6 +125,7 @@ export default function Layout() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[var(--color-tactical)] text-white font-sans">
+      <AktualityBanner />
       <header 
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
