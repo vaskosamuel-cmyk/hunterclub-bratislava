@@ -8,14 +8,15 @@ public_folder: "/images/uploads"
 collections:
   - name: "aktuality"
     label: "Aktuality (Žlté okno)"
-    files:
-      - name: "oznam"
-        label: "Aktuálny oznam"
-        file: "public/content/aktuality.json"
-        format: "json"
-        fields:
-          - {label: "Zobraziť oznam", name: "show", widget: "boolean", default: false, required: false}
-          - {label: "Text oznamu", name: "text", widget: "text", required: false}
+    folder: "public/content/aktuality"
+    create: false
+    delete: false
+    extension: "json"
+    format: "json"
+    fields:
+      - {label: "Názov (Nemeňte)", name: "title", widget: "string", default: "Aktuálny oznam"}
+      - {label: "Zobraziť oznam", name: "show", widget: "boolean", default: true}
+      - {label: "Text oznamu", name: "text", widget: "text"}
 
 
   - name: "psychotesty"

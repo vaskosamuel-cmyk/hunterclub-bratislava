@@ -66,21 +66,6 @@ export default function Layout() {
   const navigate = useNavigate();
   const { language, setLanguage, t } = useLanguage();
 
-  const [aktuality, setAktuality] = useState<{show: boolean, text: string} | null>(null);
-
-  useEffect(() => {
-    fetch(`/content/aktuality.json?t=${new Date().getTime()}`)
-      .then(res => res.ok ? res.json() : null)
-      .then(data => {
-        if (data && data.show && data.text && data.text.trim() !== '') {
-          setAktuality(data);
-        } else {
-          setAktuality(null);
-        }
-      })
-      .catch(err => console.error("Error loading aktuality:", err));
-  }, []);
-
 
 
   const handleLanguageChange = (lang: string) => {
@@ -125,7 +110,6 @@ export default function Layout() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[var(--color-tactical)] text-white font-sans">
-      <AktualityBanner />
       <header 
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -529,26 +513,7 @@ export default function Layout() {
           </div>
         </div>
 
-        {/* Announcement Bar */}
-        {aktuality && (
-          <div className="bg-[var(--color-safety)] text-[var(--color-tactical)] py-2.5 md:py-3 border-t border-black/10 relative overflow-hidden shrink-0 shadow-lg">
-            <div className="absolute inset-0 bg-white/10 animate-pulse pointer-events-none"></div>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-              <div className="flex flex-col items-center justify-center gap-1 text-center">
-                <div className="flex items-center gap-2 bg-black/5 px-3 py-0.5 rounded-full mb-0.5">
-                  <div className="w-1.5 h-1.5 bg-[var(--color-tactical)] rounded-full animate-ping"></div>
-                  <p className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em]">
-                    AKTUALITY
-                  </p>
-                  <div className="w-1.5 h-1.5 bg-[var(--color-tactical)] rounded-full animate-ping"></div>
-                </div>
-                <p className="text-sm md:text-base font-bold tracking-wide max-w-3xl leading-snug">
-                  {aktuality.text}
-                </p>
-              </div>
-            </div>
-          </div>
-        )}
+
 
         {/* Mobile menu */}
         {isMenuOpen && (
@@ -611,6 +576,7 @@ export default function Layout() {
             </div>
           </div>
         )}
+        <AktualityBanner />
       </header>
 
       <main className="flex-grow pt-10 md:pt-12">

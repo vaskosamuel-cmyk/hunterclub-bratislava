@@ -6,8 +6,16 @@ export default function AktualityBanner() {
   const [aktuality, setAktuality] = useState<{show: boolean, text: string} | null>(null);
 
   useEffect(() => {
-    fetch(`/content/aktuality.json?t=${new Date().getTime()}`)
-      .then(res => res.ok ? res.json() : null)
+    fetch(`/content/aktuality/oznam.json?t=${new Date().getTime()}`)
+      .then(async res => {
+        if (!res.ok) return null;
+        const text = await res.text();
+        try {
+          return JSON.parse(text);
+        } catch (e) {
+          return null;
+        }
+      })
       .then(data => {
         if (data && data.show && data.text && data.text.trim() !== '') {
           setAktuality(data);
@@ -15,7 +23,7 @@ export default function AktualityBanner() {
           setAktuality(null);
         }
       })
-      .catch(err => console.error("Error loading aktuality:", err));
+      .catch(() => {});
   }, []);
 
   return (
