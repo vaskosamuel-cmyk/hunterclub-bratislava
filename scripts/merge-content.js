@@ -16,9 +16,7 @@ function mergeFolder(folderName, outputFileName, sortFn) {
   for (const file of files) {
     try {
       const content = fs.readFileSync(path.join(dir, file), 'utf-8');
-      const parsed = JSON.parse(content);
-      parsed._filename = file; // Inject filename for sorting if needed
-      items.push(parsed);
+      items.push(JSON.parse(content));
     } catch (err) {
       console.error(`Error reading ${file} from ${folderName}:`, err);
     }
@@ -28,42 +26,26 @@ function mergeFolder(folderName, outputFileName, sortFn) {
     items.sort(sortFn);
   }
 
-  // Remove _filename before writing
-  const cleanItems = items.map(item => {
-    const { _filename, ...rest } = item;
-    return rest;
-  });
-
-  fs.writeFileSync(outputFile, JSON.stringify(cleanItems, null, 2));
+  fs.writeFileSync(outputFile, JSON.stringify(items, null, 2));
   console.log(`Successfully merged ${folderName} JSON files into ${outputFileName}.`);
 }
 
-function parseDate(dateStr) {
-  if (!dateStr) return 0;
-  // Check if DD.MM.YYYY
-  const parts = dateStr.split('.');
-  if (parts.length === 3) {
-    // parts[0] = DD, parts[1] = MM, parts[2] = YYYY
-    return new Date(`${parts[2]}-${parts[1]}-${parts[0]}T00:00:00Z`).getTime();
-  }
-  // Fallback to standard parsing
-  const fallback = new Date(dateStr).getTime();
-  return isNaN(fallback) ? 0 : fallback;
-}
-
+// 1. Merge Aktuality (sort by date descending - newest first)
+mergeFolder('aktuality', 'aktuality.json', (a, b) => {
+  return new Date(b.date).getTime() - new Date(a.date).getTime();
+});
 
 // 2. Merge Psychotesty (sort by sort_date ascending - closest upcoming first)
 mergeFolder('psychotesty', 'psychotesty.json', (a, b) => {
-  return parseDate(a.sort_date) - parseDate(b.sort_date);
+  const dateA = a.sort_date ? new Date(a.sort_date).getTime() : 0;
+  const dateB = b.sort_date ? new Date(b.sort_date).getTime() : 0;
+  return dateA - dateB;
 });
 
 // 3. Merge Teoria (sort by sort_date ascending - closest upcoming first)
 mergeFolder('teoria', 'teoria.json', (a, b) => {
-  return parseDate(a.sort_date) - parseDate(b.sort_date);
+  const dateA = a.sort_date ? new Date(a.sort_date).getTime() : 0;
+  const dateB = b.sort_date ? new Date(b.sort_date).getTime() : 0;
+  return dateA - dateB;
 });
 
-// 4. Merge Aktuality
-mergeFolder('aktuality', 'aktuality.json', (a, b) => {
-  // Sort by filename (which will have date) descending, so newest first
-  return b._filename.localeCompare(a._filename);
-});

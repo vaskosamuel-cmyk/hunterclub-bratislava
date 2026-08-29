@@ -14,7 +14,10 @@ collections:
     extension: "json"
     format: "json"
     fields:
-      - {label: "Text oznamu", name: "text", widget: "string", required: false}
+      - {label: "Nadpis", name: "title", widget: "string"}
+      - {label: "Dátum", name: "date", widget: "datetime", format: "DD.MM.YYYY"}
+      - {label: "Text oznamu", name: "body", widget: "text"}
+
   - name: "psychotesty"
     label: "Termíny psychotestov"
     folder: "public/content/psychotesty"

@@ -17,6 +17,8 @@ export const translations = {
       "taktickyVycvik": "Taktický Výcvik"
     },
     "brandName": "STRELNICA HUNTER CLUB",
+    "announcement": "AKTUALITY",
+    "announcementText": "",
     "strelnica": {
       "heroBadge": "PROFESIONÁLNE ZÁZEMIE",
       "heroTitle": "NAŠA",
@@ -985,6 +987,8 @@ export const translations = {
       "taktickyVycvik": "Taktisches Training"
     },
     "brandName": "SCHIESSSTAND HUNTER CLUB",
+    "announcement": "AKTUELLES",
+    "announcementText": "",
     "strelnica": {
       "heroBadge": "PROFESSIONELLE EINRICHTUNG",
       "heroTitle": "UNSER",
@@ -1953,6 +1957,8 @@ export const translations = {
       "taktickyVycvik": "Tactical Training"
     },
     "brandName": "SHOOTING RANGE HUNTER CLUB",
+    "announcement": "NEWS",
+    "announcementText": "",
     "strelnica": {
       "heroBadge": "PROFESSIONAL FACILITIES",
       "heroTitle": "OUR",
@@ -2921,6 +2927,8 @@ export const translations = {
       "taktickyVycvik": "Тактическая подготовка"
     },
     "brandName": "СТРЕЛЬБИЩЕ HUNTER CLUB",
+    "announcement": "НОВОСТИ",
+    "announcementText": "",
     "strelnica": {
       "heroBadge": "ПРОФЕССИОНАЛЬНОЕ ОСНАЩЕНИЕ",
       "heroTitle": "НАШ",
