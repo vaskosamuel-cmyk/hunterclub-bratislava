@@ -17,6 +17,8 @@ collections:
       - {label: "Nadpis", name: "title", widget: "string"}
       - {label: "Dátum", name: "date", widget: "datetime", format: "DD.MM.YYYY"}
       - {label: "Text oznamu", name: "body", widget: "text"}
+      - {label: "Text oznamu (Anglicky - voliteľné)", name: "body_en", widget: "text", required: false}
+      - {label: "Text oznamu (Nemecky - voliteľné)", name: "body_de", widget: "text", required: false}
 
   - name: "psychotesty"
     label: "Termíny psychotestov"

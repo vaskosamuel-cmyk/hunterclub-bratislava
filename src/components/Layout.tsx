@@ -52,6 +52,14 @@ function TrustBox() {
   );
 }
 
+const KNOWN_TRANSLATIONS: Record<string, { en?: string; de?: string; ru?: string }> = {
+  "Nájdete nás na adrese Kamenné nám. 1A (bývalý PRIOR, -2. poschodie). V prípade otázok volajte na +421 911 650 032": {
+    en: "You can find us at Kamenné nám. 1A (former PRIOR, -2nd floor). In case of questions, call +421 911 650 032",
+    de: "Sie finden uns unter der Adresse Kamenné nám. 1A (ehemaliges PRIOR, -2. Stock). Bei Fragen rufen Sie +421 911 650 032 an",
+    ru: "Мы находимся по адресу Kamenné nám. 1A (бывший PRIOR, -2 этаж). По вопросам звоните +421 911 650 032",
+  },
+};
+
 export default function Layout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCounselorOpen, setIsCounselorOpen] = useState(false);
@@ -69,42 +77,36 @@ export default function Layout() {
   useEffect(() => {
     fetch(`/content/aktuality.json?t=${new Date().getTime()}`)
       .then(res => res.json())
-      .then(async data => {
+      .then(data => {
         if (data && data.length > 0) {
           const item = data[0];
           setAktualityData(item);
           
           const translations: Record<string, string> = {};
           
+          if (item.body_en) translations.en = item.body_en;
+          if (item.body_de) translations.de = item.body_de;
+          if (item.body_ru) translations.ru = item.body_ru;
+
           if (item.body) {
-            // Translate to English
-            try {
-              const resEn = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=sk&tl=en&dt=t&q=${encodeURIComponent(item.body)}`);
-              const dataEn = await resEn.json();
-              translations.en = dataEn[0].map((x: any) => x[0]).join('');
-            } catch (e) {
-              console.error("Auto-translate EN failed", e);
-            }
-            
-            // Translate to German
-            try {
-              const resDe = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=sk&tl=de&dt=t&q=${encodeURIComponent(item.body)}`);
-              const dataDe = await resDe.json();
-              translations.de = dataDe[0].map((x: any) => x[0]).join('');
-            } catch (e) {
-              console.error("Auto-translate DE failed", e);
+            const known = KNOWN_TRANSLATIONS[item.body.trim()];
+            if (known) {
+              if (!translations.en && known.en) translations.en = known.en;
+              if (!translations.de && known.de) translations.de = known.de;
+              if (!translations.ru && known.ru) translations.ru = known.ru;
             }
           }
           
           setTranslatedAktuality(translations);
         }
       })
-      .catch(err => console.error("Error loading aktuality:", err));
+      .catch(err => console.warn("Error loading aktuality:", err));
   }, []);
 
   const currentAktualityMessage = aktualityData 
     ? (language === 'en' && translatedAktuality.en) ? translatedAktuality.en
     : (language === 'de' && translatedAktuality.de) ? translatedAktuality.de
+    : (language === 'ru' && translatedAktuality.ru) ? translatedAktuality.ru
     : aktualityData.body
     : null;
 

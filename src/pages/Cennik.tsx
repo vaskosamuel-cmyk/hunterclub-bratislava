@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Filter, Target, Shield, Zap, Star } from 'lucide-react';
+import { Filter, Target, Shield, Star } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 import Breadcrumbs from '../components/Breadcrumbs';
@@ -11,20 +11,18 @@ export default function Cennik() {
   
   // Tabs are dynamic based on language
   const tabs = useMemo(() => [
-    t('pricing.tabs.drah'),
-    t('pricing.tabs.zbrani'),
-    t('pricing.tabs.strelivo')
+    { id: 'drah' as const, label: t('pricing.tabs.drah'), icon: Target },
+    { id: 'zbrani' as const, label: t('pricing.tabs.zbrani'), icon: Shield },
   ], [t]);
 
-  const [activeTab, setActiveTab] = useState(tabs[0]);
+  const [activeTab, setActiveTab] = useState<'drah' | 'zbrani'>('drah');
 
   const { scrollYProgress } = useScroll();
   const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '-20%']);
 
   const pricingData = useMemo(() => ({
-    [t('pricing.tabs.drah')]: t('pricing.items.drah', { returnObjects: true }),
-    [t('pricing.tabs.zbrani')]: t('pricing.items.zbrani', { returnObjects: true }),
-    [t('pricing.tabs.strelivo')]: t('pricing.items.strelivo', { returnObjects: true }),
+    drah: t('pricing.items.drah', { returnObjects: true }),
+    zbrani: t('pricing.items.zbrani', { returnObjects: true }),
   }), [t]);
 
   const filteredItems = useMemo(() => {
@@ -85,22 +83,23 @@ export default function Cennik() {
             <div className="relative z-10">
               <div className="flex flex-col lg:flex-row justify-between items-stretch lg:items-center gap-8 mb-12">
                 <div className="flex flex-wrap gap-2 md:gap-4 bg-black/20 p-1.5 rounded-2xl border border-white/5">
-                  {tabs.map((tab) => (
-                    <button
-                      key={tab}
-                      onClick={() => setActiveTab(tab)}
-                      className={`px-6 py-3 rounded-xl font-display text-base md:text-lg tracking-widest transition-all uppercase italic flex items-center gap-2 ${
-                        activeTab === tab 
-                          ? 'bg-[var(--color-safety)] text-black shadow-lg' 
-                          : 'text-gray-300 hover:text-white hover:bg-white/5'
-                      }`}
-                    >
-                      {tab === t('pricing.tabs.drah') && <Target className="w-5 h-5" />}
-                      {tab === t('pricing.tabs.zbrani') && <Shield className="w-5 h-5" />}
-                      {tab === t('pricing.tabs.strelivo') && <Zap className="w-5 h-5" />}
-                      {tab}
-                    </button>
-                  ))}
+                  {tabs.map((tab) => {
+                    const Icon = tab.icon;
+                    return (
+                      <button
+                        key={tab.id}
+                        onClick={() => setActiveTab(tab.id)}
+                        className={`px-6 py-3 rounded-xl font-display text-base md:text-lg tracking-widest transition-all uppercase italic flex items-center gap-2 ${
+                          activeTab === tab.id 
+                            ? 'bg-[var(--color-safety)] text-black shadow-lg' 
+                            : 'text-gray-300 hover:text-white hover:bg-white/5'
+                        }`}
+                      >
+                        <Icon className="w-5 h-5" />
+                        {tab.label}
+                      </button>
+                    );
+                  })}
                   <button
                     onClick={() => navigate('/strelecke-balicky')}
                     className="px-6 py-3 rounded-xl font-display text-base md:text-lg tracking-widest transition-all uppercase italic flex items-center gap-2 text-gray-300 hover:text-white hover:bg-white/5"
