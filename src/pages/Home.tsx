@@ -483,8 +483,55 @@ export default function Home() {
         bgImage="/hunterclubglock.webp"
         overlayClass="bg-gradient-to-b from-[#0D0D0D] via-[#0D0D0D]/80 to-[#0D0D0D]"
       >
+      {/* Teambuilding Banner */}
+      <div className="pt-20 pb-4 relative z-10">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[var(--color-forest)] via-[#151c14] to-[var(--color-tactical)] border border-white/10 p-6 sm:p-8 shadow-2xl group hover:border-[var(--color-safety)]/50 transition-all duration-300">
+            {/* Background Texture */}
+            <div className="absolute inset-0 z-0">
+              <img 
+                src="/hunterclubshooting.webp" 
+                alt="Teambuilding Hunter Club" 
+                className="w-full h-full object-cover opacity-20 group-hover:scale-105 group-hover:opacity-30 transition-all duration-700" 
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-forest)]/90 via-[var(--color-forest)]/80 to-[var(--color-tactical)]/90"></div>
+            </div>
+
+            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-5">
+                <div className="w-14 h-14 rounded-xl bg-[var(--color-safety)]/10 border border-[var(--color-safety)]/30 flex items-center justify-center text-[var(--color-safety)] shrink-0 shadow-lg group-hover:scale-105 group-hover:bg-[var(--color-safety)]/20 transition-all">
+                  <Users className="w-7 h-7" />
+                </div>
+                <div>
+                  <div className="inline-block bg-black/40 text-[var(--color-safety)] text-[11px] font-black px-3 py-1 rounded-full uppercase tracking-widest mb-1.5 border border-white/5">
+                    {t('home.teambuildingBanner.badge')}
+                  </div>
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-display uppercase italic text-white mb-2 leading-tight">
+                    {t('home.teambuildingBanner.title')}
+                  </h3>
+                  <p className="text-gray-300 text-sm sm:text-base max-w-xl leading-relaxed">
+                    {t('home.teambuildingBanner.desc')}
+                  </p>
+                </div>
+              </div>
+
+              <div className="shrink-0 w-full md:w-auto">
+                <button
+                  onClick={() => navigate('/teambuilding')}
+                  className="w-full md:w-auto bg-[var(--color-safety)] text-black px-6 py-3.5 rounded-sm font-display text-base sm:text-lg font-bold tracking-wider hover:bg-yellow-400 transition-all uppercase italic flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(251,188,5,0.25)] hover:shadow-[0_0_30px_rgba(251,188,5,0.4)] group/btn whitespace-nowrap"
+                >
+                  <span>{t('home.teambuildingBanner.btn')}</span>
+                  <ChevronRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* FAQ Section */}
-      <section className="py-24 relative">
+      <section className="py-20 relative">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-5xl font-display mb-4 italic uppercase text-white">{t('home.faq.title')} <span className="text-[var(--color-safety)]">{t('home.faq.titleHighlight')}</span></h2>

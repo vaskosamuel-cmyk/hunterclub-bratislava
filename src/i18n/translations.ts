@@ -14,8 +14,10 @@ export const translations = {
       "zakladnyKurz": "Základný kurz streľby",
       "teoretickaPriprava": "Teoretická príprava na ZP",
       "psychotesty": "Psychotesty",
-      "taktickyVycvik": "Taktický Výcvik"
-    , "teambuilding": "Teambuilding"},
+      "taktickyVycvik": "Taktický Výcvik",
+      "oStrelnici": "O strelnici",
+      "teambuilding": "Team building"
+    },
     "brandName": "STRELNICA HUNTER CLUB",
     "announcement": "AKTUALITY",
     "announcementText": "",
@@ -787,6 +789,12 @@ export const translations = {
           "pkg3Guns": "Glock 19, STI Spartan, CZ EVO3, AR15, AK47"
         }
       },
+      "teambuildingBanner": {
+        "badge": "PRE FIRMY A SKUPINY",
+        "title": "Hľadáte netradičný firemný teambuilding?",
+        "desc": "Doprajte svojmu tímu nezabudnuteľný adrenalínový zážitok v bezpečnom prostredí našej strelnice pod vedením inštruktorov.",
+        "btn": "VIAC O TEAMBUILDINGU"
+      },
       "faq": {
         "title": "Často kladené",
         "titleHighlight": "otázky",
@@ -1008,8 +1016,10 @@ export const translations = {
       "zakladnyKurz": "Grundkurs Schießen",
       "teoretickaPriprava": "Theoretische Vorbereitung",
       "psychotesty": "Psychotests",
-      "taktickyVycvik": "Taktisches Training"
-    , "teambuilding": "Teambuilding"},
+      "taktickyVycvik": "Taktisches Training",
+      "oStrelnici": "Über den Schießstand",
+      "teambuilding": "Team building"
+    },
     "brandName": "SCHIESSSTAND HUNTER CLUB",
     "announcement": "AKTUELLES",
     "announcementText": "",
@@ -1781,6 +1791,12 @@ export const translations = {
           "pkg3Guns": "Glock 19, STI Spartan, CZ EVO3, AR15, AK47"
         }
       },
+      "teambuildingBanner": {
+        "badge": "FÜR UNTERNEHMEN UND GRUPPEN",
+        "title": "Suchen Sie ein außergewöhnliches Firmen-Teambuilding?",
+        "desc": "Gönnen Sie Ihrem Team ein unvergessliches Adrenalin-Erlebnis in der sicheren Umgebung unseres Schießstandes unter Anleitung von Profis.",
+        "btn": "MEHR ÜBER TEAMBUILDING"
+      },
       "faq": {
         "title": "Häufig gestellte",
         "titleHighlight": "Fragen",
@@ -2002,8 +2018,10 @@ export const translations = {
       "zakladnyKurz": "Basic Shooting Course",
       "teoretickaPriprava": "Theoretical Preparation",
       "psychotesty": "Psychological Tests",
-      "taktickyVycvik": "Tactical Training"
-    , "teambuilding": "Teambuilding"},
+      "taktickyVycvik": "Tactical Training",
+      "oStrelnici": "About Shooting Range",
+      "teambuilding": "Team building"
+    },
     "brandName": "SHOOTING RANGE HUNTER CLUB",
     "announcement": "NEWS",
     "announcementText": "",
@@ -2775,6 +2793,12 @@ export const translations = {
           "pkg3Guns": "Glock 19, STI Spartan, CZ EVO3, AR15, AK47"
         }
       },
+      "teambuildingBanner": {
+        "badge": "FOR COMPANIES & GROUPS",
+        "title": "Looking for an extraordinary corporate teambuilding?",
+        "desc": "Treat your team to an unforgettable adrenaline experience in the safe environment of our shooting range guided by professional instructors.",
+        "btn": "LEARN MORE ABOUT TEAMBUILDING"
+      },
       "faq": {
         "title": "Frequently Asked",
         "titleHighlight": "Questions",
@@ -2996,8 +3020,10 @@ export const translations = {
       "zakladnyKurz": "Базовый курс стрельбы",
       "teoretickaPriprava": "Теоретическая подготовка",
       "psychotesty": "Психотесты",
-      "taktickyVycvik": "Тактическая подготовка"
-    , "teambuilding": "Тимбилдинг"},
+      "taktickyVycvik": "Тактическая подготовка",
+      "oStrelnici": "О стрельбище",
+      "teambuilding": "Тимбилдинг"
+    },
     "brandName": "СТРЕЛЬБИЩЕ HUNTER CLUB",
     "announcement": "НОВОСТИ",
     "announcementText": "",
@@ -3768,6 +3794,12 @@ export const translations = {
           "pkg3Shots": "48 выстрелов",
           "pkg3Guns": "Glock 19, STI Spartan, CZ EVO3, AR15, AK47"
         }
+      },
+      "teambuildingBanner": {
+        "badge": "ДЛЯ КОМПАНИЙ И ГРУПП",
+        "title": "Ищете необычный корпоративный тимбилдинг?",
+        "desc": "Подарите вашей команде незабываемые впечатления и адреналин в безопасной обстановке нашего стрельбища под руководством инструкторов.",
+        "btn": "ПОДРОБНЕЕ О ТИМБИЛДИНГЕ"
       },
       "faq": {
         "title": "Часто задаваемые",

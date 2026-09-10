@@ -132,7 +132,14 @@ export default function Layout() {
   }, []);
 
   const navigation = [
-    { name: t('nav.strelnica'), href: '/strelnica' },
+    { 
+      name: t('nav.strelnica'), 
+      href: '/strelnica',
+      dropdown: [
+        { name: t('nav.oStrelnici'), href: '/strelnica' },
+        { name: t('nav.teambuilding'), href: '/teambuilding' },
+      ]
+    },
     { name: t('nav.baliky'), href: '/strelecke-balicky' },
     { name: t('nav.cennik'), href: '/cennik' },
     { 
@@ -211,7 +218,9 @@ export default function Layout() {
                       onClick={() => setClosedDropdowns(prev => ({ ...prev, [item.name]: true }))}
                       className={clsx(
                         'text-sm font-bold uppercase tracking-wider transition-colors py-2 flex items-center gap-1',
-                        location.pathname === item.href ? 'text-white border-b-2 border-white' : 'text-white hover:text-[var(--color-safety)]'
+                        location.pathname === item.href || (item.dropdown && item.dropdown.some(d => location.pathname === d.href))
+                          ? 'text-white border-b-2 border-white' 
+                          : 'text-white hover:text-[var(--color-safety)]'
                       )}
                     >
                       {item.name}
@@ -227,9 +236,15 @@ export default function Layout() {
                                 key={dropItem.name} 
                                 to={dropItem.href}
                                 onClick={() => setClosedDropdowns(prev => ({ ...prev, [item.name]: true }))}
-                                className="flex items-center px-4 py-3 rounded-lg hover:bg-white/10 transition-colors duration-200 group/item"
+                                className={clsx(
+                                  "flex items-center px-4 py-3 rounded-lg hover:bg-white/10 transition-colors duration-200 group/item",
+                                  location.pathname === dropItem.href && "bg-white/10"
+                                )}
                               >
-                                <span className="text-sm font-bold text-white/90 group-hover/item:text-[var(--color-safety)] transition-colors">
+                                <span className={clsx(
+                                  "text-sm font-bold transition-colors",
+                                  location.pathname === dropItem.href ? "text-[var(--color-safety)]" : "text-white/90 group-hover/item:text-[var(--color-safety)]"
+                                )}>
                                   {dropItem.name}
                                 </span>
                               </Link>
@@ -368,8 +383,8 @@ export default function Layout() {
                       to={item.href}
                       className={clsx(
                         'flex-grow px-3 py-2 rounded-md text-lg font-medium uppercase tracking-wider flex items-center justify-between',
-                        location.pathname === item.href
-                          ? 'bg-black/20 text-white'
+                        location.pathname === item.href || (item.dropdown && item.dropdown.some(d => location.pathname === d.href))
+                          ? 'bg-black/20 text-[var(--color-safety)] font-bold'
                           : 'text-white hover:bg-black/10 hover:text-white'
                       )}
                       onClick={() => setIsMenuOpen(false)}
@@ -394,7 +409,10 @@ export default function Layout() {
                         <Link
                           key={dropItem.name}
                           to={dropItem.href}
-                          className="block px-3 py-2 rounded-md text-sm font-medium uppercase tracking-wider text-gray-300 hover:bg-black/10 hover:text-white"
+                          className={clsx(
+                            "block px-3 py-2 rounded-md text-sm font-medium uppercase tracking-wider transition-colors",
+                            location.pathname === dropItem.href ? "text-[var(--color-safety)] font-bold" : "text-gray-300 hover:bg-black/10 hover:text-white"
+                          )}
                           onClick={() => setIsMenuOpen(false)}
                         >
                           {dropItem.name}
