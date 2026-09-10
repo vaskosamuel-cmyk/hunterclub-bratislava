@@ -148,7 +148,10 @@ export default function Action() {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/20 z-10"></div>
           <img
-            src="https://i.postimg.cc/KzY6d5kq/Gemini-Generated-Image-oampdgoampdgoamp-(1)-(1).webp"
+            src="/hunterclubstrelnica-bg.webp"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = '/hunterclubshooting.webp';
+            }}
             alt="Shooting Experience"
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"

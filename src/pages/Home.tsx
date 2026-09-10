@@ -287,7 +287,10 @@ export default function Home() {
               className="relative min-h-[450px] rounded-sm overflow-hidden group border-2 border-[var(--color-safety)]/50 hover:border-[var(--color-safety)] shadow-[0_0_15px_rgba(251,188,5,0.15)] transition-colors flex flex-col"
             >
               <img
-                src="https://i.postimg.cc/76YN9sGZ/Gemini-Generated-Image-twsjc7twsjc7twsj.webp"
+                src="/hunterclub-experience1.webp"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = '/hunterclubshooting.webp';
+                }}
                 alt="Beginner"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 referrerPolicy="no-referrer"
@@ -317,7 +320,10 @@ export default function Home() {
               className="relative min-h-[450px] rounded-sm overflow-hidden group cursor-pointer border-2 border-red-600/50 hover:border-red-600 shadow-[0_0_15px_rgba(220,38,38,0.15)] transition-colors flex flex-col"
             >
               <img
-                src="https://i.postimg.cc/02fDWdvm/Gemini-Generated-Image-pkfvqspkfvqspkfv.webp"
+                src="/hunterclub-experience2.webp"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = '/hunterclubglock.webp';
+                }}
                 alt="Pro Shooter"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 referrerPolicy="no-referrer"

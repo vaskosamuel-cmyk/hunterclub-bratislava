@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { Shield, Target, Zap, Users, ChevronRight, MapPin, Clock, Phone, Mail, Info } from 'lucide-react';
 import Link from '../components/Link';
 import Breadcrumbs from '../components/Breadcrumbs';
@@ -6,19 +6,25 @@ import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Strelnica() {
   const { t } = useLanguage();
+  const { scrollYProgress } = useScroll();
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '-20%']);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col min-h-screen">
       {/* Shared Background Wrapper */}
       <div className="relative">
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <img 
-            src="https://i.postimg.cc/KzY6d5kq/Gemini-Generated-Image-oampdgoampdgoamp-(1)-(1).webp" 
-            alt="Background" 
-            className="w-full h-full object-cover opacity-40 fixed top-0 left-0"
+        <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+          <motion.img 
+            style={{ y: backgroundY }}
+            src="/hunterclubstrelnica-bg.webp" 
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = '/hunterclubstrelnica1.webp';
+            }}
+            alt="Strelnica Hunter Club" 
+            className="w-full h-[130vh] object-cover opacity-50"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0D0D0D] via-[#0D0D0D]/50 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0D0D0D] via-[#0D0D0D]/75 to-[#0D0D0D]/40"></div>
         </div>
 
         <div className="relative z-10">
@@ -161,7 +167,10 @@ export default function Strelnica() {
             <div className="relative">
               <div className="absolute -inset-4 border border-[var(--color-safety)] opacity-20 rounded-sm"></div>
               <img 
-                src="https://i.postimg.cc/Fs56xGKx/Hunterclub-20-768x513-1.webp" 
+                src="/hunterclub-lane.webp" 
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = '/hunterclubstrelnica1.webp';
+                }}
                 alt="Strelnica Hunter Club" 
                 className="rounded-sm shadow-2xl relative z-10 h-[400px] w-full object-cover"
                 referrerPolicy="no-referrer"
