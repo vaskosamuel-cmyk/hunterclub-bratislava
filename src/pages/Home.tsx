@@ -599,6 +599,15 @@ export default function Home() {
                     <p className="text-gray-300 whitespace-pre-line">{t('home.map.address')}</p>
                   </div>
                 </div>
+                <div className="flex items-start gap-6">
+                  <div className="bg-[var(--color-slate)] p-3 rounded-sm">
+                    <Clock className="w-6 h-6 text-[var(--color-safety)]" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold mb-1 tracking-widest uppercase text-sm">{t('home.map.hoursTitle')}</h4>
+                    <p className="text-gray-300 whitespace-pre-line">{t('home.map.hours')}</p>
+                  </div>
+                </div>
               </div>
               <a
                 href="https://www.google.com/maps/dir/?api=1&destination=Kamenn%C3%A9+n%C3%A1mestie+1A,+811+08+Bratislava"

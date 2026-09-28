@@ -614,7 +614,7 @@ export const translations = {
       "phoneTitle": "TELEFÓN",
       "emailTitle": "EMAIL",
       "hoursTitle": "OTVÁRACIE HODINY",
-      "hoursText": "Po - Ne: 09:00 - 21:00"
+      "hoursText": "Po - Pia: 08:00 - 21:00\nSo - Ne: 08:00 - 20:00"
     },
     "klub": {
       "breadcrumb": "Športový klub HDI",
@@ -744,7 +744,7 @@ export const translations = {
         "instructors": "PROFESIONÁLI",
         "instructorsDesc": "Skúsení inštruktori",
         "open": "OTVORENÉ DENNE",
-        "openDesc": "09:00 - 21:00"
+        "openDesc": "Po - Pia 08:00 - 21:00 | So - Ne 08:00 - 20:00"
       },
       "pathfinder": {
         "beginnerBadge": "ZAČIATOČNÍK",
@@ -826,7 +826,7 @@ export const translations = {
         "hoursTitle": "OTVÁRACIE HODINY",
         "open": "PRÁVE OTVORENÉ",
         "closed": "ZATVORENÉ",
-        "hours": "Pondelok - Nedeľa: 09:00 - 21:00",
+        "hours": "Po - Pia: 08:00 - 21:00\nSo - Ne: 08:00 - 20:00",
         "navBtn": "NAVIGOVAŤ: KAMENNÉ NÁMESTIE"
       },
       "modal": {
@@ -905,7 +905,7 @@ export const translations = {
       "resTitle": "Rezervácia termínu",
       "resDesc1": "PRE LAICKÚ VEREJNOSŤ JE POTREBNÉ SA VOPRED OBJEDNAŤ NA VOĽNÝ TERMÍN.",
       "resDesc2": "Strelecké balíky je možné absolvovať v čase od 10:00 do 19:00 a cez víkendy podľa dohody.",
-      "weAreHere": "Sme tu pre vás: PO-NE 09:00 - 21:00"
+      "weAreHere": "Sme tu pre vás: Po–Pia 08:00 – 21:00 | So–Ne 08:00 – 20:00"
     },
     "pricing": {
       "heroBadge": "TRANSPARENTNÉ PODMIENKY",
@@ -1616,7 +1616,7 @@ export const translations = {
       "phoneTitle": "TELEFON",
       "emailTitle": "E-MAIL",
       "hoursTitle": "ÖFFNUNGSZEITEN",
-      "hoursText": "Mo - So: 09:00 - 21:00"
+      "hoursText": "Mo - Fr: 08:00 - 21:00\nSa - So: 08:00 - 20:00"
     },
     "klub": {
       "breadcrumb": "Sportclub HDI",
@@ -1746,7 +1746,7 @@ export const translations = {
         "instructors": "PROFIS",
         "instructorsDesc": "Erfahrene Instruktoren",
         "open": "TÄGLICH GEÖFFNET",
-        "openDesc": "09:00 - 21:00"
+        "openDesc": "Mo - Fr 08:00 - 21:00 | Sa - So 08:00 - 20:00"
       },
       "pathfinder": {
         "beginnerBadge": "ANFÄNGER",
@@ -1828,7 +1828,7 @@ export const translations = {
         "hoursTitle": "ÖFFNUNGSZEITEN",
         "open": "JETZT GEÖFFNET",
         "closed": "GESCHLOSSEN",
-        "hours": "Montag - Sonntag: 09:00 - 21:00",
+        "hours": "Mo - Fr: 08:00 - 21:00\nSa - So: 08:00 - 20:00",
         "navBtn": "NAVIGIEREN: KAMENNÉ NÁMESTIE"
       },
       "modal": {
@@ -1907,7 +1907,7 @@ export const translations = {
       "resTitle": "Terminreservierung",
       "resDesc1": "FÜR DIE ALLGEMEINE ÖFFENTLICHKEIT IST EINE VORHERIGE TERMINVEREINBARUNG ERFORDERLICH.",
       "resDesc2": "Schießpakete können von 10:00 bis 19:00 Uhr und an Wochenenden nach Vereinbarung absolviert werden.",
-      "weAreHere": "Wir sind für Sie da: MO-SO 09:00 - 21:00"
+      "weAreHere": "Wir sind für Sie da: Mo–Fr 08:00 – 21:00 | Sa–So 08:00 – 20:00"
     },
     "pricing": {
       "heroBadge": "TRANSPARENTE BEDINGUNGEN",
@@ -2618,7 +2618,7 @@ export const translations = {
       "phoneTitle": "PHONE",
       "emailTitle": "EMAIL",
       "hoursTitle": "OPENING HOURS",
-      "hoursText": "Mon - Sun: 09:00 - 21:00"
+      "hoursText": "Mon - Fri: 08:00 - 21:00\nSat - Sun: 08:00 - 20:00"
     },
     "klub": {
       "breadcrumb": "Sports Club HDI",
@@ -2748,7 +2748,7 @@ export const translations = {
         "instructors": "PROFESSIONALS",
         "instructorsDesc": "Experienced instructors",
         "open": "OPEN DAILY",
-        "openDesc": "9:00 AM - 9:00 PM"
+        "openDesc": "Mon - Fri 08:00 - 21:00 | Sat - Sun 08:00 - 20:00"
       },
       "pathfinder": {
         "beginnerBadge": "BEGINNER",
@@ -2830,7 +2830,7 @@ export const translations = {
         "hoursTitle": "OPENING HOURS",
         "open": "OPEN NOW",
         "closed": "CLOSED",
-        "hours": "Monday - Sunday: 09:00 - 21:00",
+        "hours": "Mon - Fri: 08:00 - 21:00\nSat - Sun: 08:00 - 20:00",
         "navBtn": "NAVIGATE: KAMENNÉ NÁMESTIE"
       },
       "modal": {
@@ -2909,7 +2909,7 @@ export const translations = {
       "resTitle": "Appointment Reservation",
       "resDesc1": "FOR THE GENERAL PUBLIC, IT IS NECESSARY TO BOOK AN APPOINTMENT IN ADVANCE.",
       "resDesc2": "Shooting packages can be completed from 10:00 to 19:00 and on weekends by appointment.",
-      "weAreHere": "We are here for you: MON-SUN 09:00 - 21:00"
+      "weAreHere": "We are here for you: Mon–Fri 08:00 – 21:00 | Sat–Sun 08:00 – 20:00"
     },
     "pricing": {
       "heroBadge": "TRANSPARENT CONDITIONS",
@@ -3620,7 +3620,7 @@ export const translations = {
       "phoneTitle": "ТЕЛЕФОН",
       "emailTitle": "ЭЛЕКТРОННАЯ ПОЧТА",
       "hoursTitle": "ЧАСЫ РАБОТЫ",
-      "hoursText": "Пн - Вс: 09:00 - 21:00"
+      "hoursText": "Пн - Пт: 08:00 - 21:00\nСб - Вс: 08:00 - 20:00"
     },
     "klub": {
       "breadcrumb": "Спортивный клуб HDI",
@@ -3750,7 +3750,7 @@ export const translations = {
         "instructors": "ПРОФЕССИОНАЛЫ",
         "instructorsDesc": "Опытные инструкторы",
         "open": "ОТКРЫТО ЕЖЕДНЕВНО",
-        "openDesc": "С 09:00 ДО 21:00"
+        "openDesc": "Пн - Пт 08:00 - 21:00 | Сб - Вс 08:00 - 20:00"
       },
       "pathfinder": {
         "beginnerBadge": "НОВИЧОК",
@@ -3832,7 +3832,7 @@ export const translations = {
         "hoursTitle": "ЧАСЫ РАБОТЫ",
         "open": "СЕЙЧАС ОТКРЫТО",
         "closed": "ЗАКРЫТО",
-        "hours": "Понедельник - Воскресенье: 09:00 - 21:00",
+        "hours": "Пн - Пт: 08:00 - 21:00\nСб - Вс: 08:00 - 20:00",
         "navBtn": "НАВИГАЦИЯ: КАМЕННАЯ ПЛОЩАДЬ"
       },
       "modal": {
@@ -3911,7 +3911,7 @@ export const translations = {
       "resTitle": "Бронирование времени",
       "resDesc1": "ДЛЯ ШИРОКОЙ ПУБЛИКИ НЕОБХОДИМО БРОНИРОВАТЬ ВРЕМЯ ЗАРАНЕЕ.",
       "resDesc2": "Стрелковые пакеты доступны с 10:00 до 19:00 и в выходные дни по предварительной записи.",
-      "weAreHere": "Мы здесь для вас: ПН-ВС 09:00 - 21:00"
+      "weAreHere": "Мы здесь для вас: Пн–Пт 08:00 – 21:00 | Сб–Вс 08:00 – 20:00"
     },
     "pricing": {
       "heroBadge": "ПРОЗРАЧНЫЕ УСЛОВИЯ",

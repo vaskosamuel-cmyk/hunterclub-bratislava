@@ -143,6 +143,13 @@ export default function Kontakt() {
                   <p className="text-gray-300">info@hunterclub.sk</p>
                 </div>
               </div>
+              <div className="flex items-start gap-4">
+                <Clock className="w-6 h-6 text-[var(--color-safety)] shrink-0" />
+                <div>
+                  <h4 className="font-bold mb-1 text-white">{t('kontakt.hoursTitle')}</h4>
+                  <p className="text-gray-300 whitespace-pre-line">{t('kontakt.hoursText')}</p>
+                </div>
+              </div>
             </div>
           </div>
           

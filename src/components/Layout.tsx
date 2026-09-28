@@ -555,8 +555,8 @@ export default function Layout() {
                 {t('footer.hours')}
               </h3>
               <ul className="space-y-2 text-sm text-gray-400 mb-6">
-                <li className="flex justify-between border-b border-white/5 pb-2 font-medium"><span>{t('footer.monFri')}</span> <span className="text-white">09:00 - 21:00</span></li>
-                <li className="flex justify-between border-b border-white/5 pb-2 font-medium"><span>{t('footer.satSun')}</span> <span className="text-white">09:00 - 21:00</span></li>
+                <li className="flex justify-between border-b border-white/5 pb-2 font-medium"><span>{t('footer.monFri')}</span> <span className="text-white">08:00 - 21:00</span></li>
+                <li className="flex justify-between border-b border-white/5 pb-2 font-medium"><span>{t('footer.satSun')}</span> <span className="text-white">08:00 - 20:00</span></li>
               </ul>
               <div className="bg-[var(--color-safety)]/10 border-l-2 border-[var(--color-safety)] p-3 rounded-r-sm">
                 <p className="text-[11px] font-bold text-[var(--color-safety)] uppercase tracking-wider leading-relaxed">
