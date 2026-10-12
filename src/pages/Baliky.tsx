@@ -136,6 +136,28 @@ export default function Baliky() {
     );
   };
 
+  const renderWithPhoneLink = (text: string) => {
+    if (!text) return null;
+    const phoneRegex = /(0911\s*650\s*032|\+421\s*911\s*650\s*032)/g;
+    const parts = text.split(phoneRegex);
+    return parts.map((part, index) => {
+      const clean = part.replace(/\s+/g, '');
+      if (clean === '0911650032' || clean === '+421911650032') {
+        return (
+          <a
+            key={index}
+            href="tel:+421911650032"
+            className="text-[var(--color-safety)] hover:text-yellow-300 font-bold underline underline-offset-4 transition-colors inline-block"
+            title="Zavolať na 0911 650 032"
+          >
+            {part}
+          </a>
+        );
+      }
+      return part;
+    });
+  };
+
   const { scrollYProgress } = useScroll();
   const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '-20%']);
 
@@ -181,7 +203,7 @@ export default function Baliky() {
               {t('baliky.heroTitle')} <span className="text-[var(--color-safety)]">{t('baliky.heroTitleHighlight')}</span>
             </h1>
             <p className="text-[20px] leading-[28px] text-white mb-4 font-medium max-w-2xl border-l-4 border-[var(--color-safety)] pl-6">
-              {t('baliky.heroDesc')}
+              {renderWithPhoneLink(t('baliky.heroDesc'))}
             </p>
             <p className="text-sm text-gray-400 mb-10 pl-6">
               {t('baliky.vatInfo')}
@@ -256,7 +278,7 @@ export default function Baliky() {
                   {t('baliky.infoText')}
                 </span>
                 <span className="text-[var(--color-safety)] font-bold tracking-wider uppercase text-sm">
-                  {t('baliky.infoSubtext')}
+                  {renderWithPhoneLink(t('baliky.infoSubtext'))}
                 </span>
               </div>
             </div>

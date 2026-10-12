@@ -78,12 +78,12 @@ export const translations = {
       "heroBadge": "ZÁŽITKOVÁ STREĽBA",
       "heroTitle": "STRELECKÉ",
       "heroTitleHighlight": "BALÍČKY",
-      "heroDesc": "Zažite skvelý zážitok vhodný od 18 rokov. Balíčky sú určené pre 1 osobu. Pre mládež od 12 rokov výlučne so súhlasom rodiča. Strelecké balíčky je možné absolvovať v Po – Pia v čase od 10:00 do 19:00, víkendy podľa dohody.",
+      "heroDesc": "Zažite skvelý zážitok vhodný od 18 rokov. Balíčky sú určené pre 1 osobu. Pre mládež od 12 rokov výlučne so súhlasom rodiča. Je možné absolvovať vo vopred dohodnutom čase telefonicky na čísle 0911 650 032.",
       "vatInfo": "Ceny vrátane DPH 23%",
       "safeExperience": "BEZPEČNÝ ZÁŽITOK",
       "instructorIncluded": "INŠTRUKTOR V CENE",
       "infoText": "PRE LAICKÚ VEREJNOSŤ JE POTREBNÉ SA VOPRED OBJEDNAŤ NA VOĽNÝ TERMÍN.",
-      "infoSubtext": "Strelecké balíky je možné absolvovať v čase od 10:00 do 19:00 a cez víkendy podľa dohody.",
+      "infoSubtext": "Strelecké balíky je možné absolvovať vo vopred dohodnutom čase telefonicky na čísle 0911 650 032.",
       "checkAvailability": "Zistiť voľný termín",
       "giftVoucherBadge": "Darčekové poukazy",
       "giftVoucherTitle": "Darujte",
@@ -153,7 +153,7 @@ export const translations = {
         ]
       },
       "chicago": {
-        "name": "Balíček „CHICAGO“",
+        "name": "Balíček „BOSTON GANG“",
         "details": [
           "8 výstrelov pištoľ RUGER 1911, kal. 45ACP",
           "6 výstrelov revolver S&W, kal. 44MAG",
@@ -904,7 +904,7 @@ export const translations = {
       "orderDesc3": ". Náš tím vám ochotne poradí s výberom.",
       "resTitle": "Rezervácia termínu",
       "resDesc1": "PRE LAICKÚ VEREJNOSŤ JE POTREBNÉ SA VOPRED OBJEDNAŤ NA VOĽNÝ TERMÍN.",
-      "resDesc2": "Strelecké balíky je možné absolvovať v čase od 10:00 do 19:00 a cez víkendy podľa dohody.",
+      "resDesc2": "Strelecké balíky je možné absolvovať vo vopred dohodnutom čase.",
       "weAreHere": "Sme tu pre vás: Po–Pia 08:00 – 21:00 | So–Ne 08:00 – 20:00"
     },
     "pricing": {
@@ -1080,12 +1080,12 @@ export const translations = {
       "heroBadge": "ERLEBNISSCHIESSEN",
       "heroTitle": "SCHIESS",
       "heroTitleHighlight": "PAKETE",
-      "heroDesc": "Erleben Sie ein großartiges Erlebnis, geeignet ab 18 Jahren. Die Pakete sind für 1 Person bestimmt. Für Jugendliche ab 12 Jahren nur mit Zustimmung der Eltern. Schießpakete können von Mo - Fr zwischen 10:00 und 19:00 Uhr durchgeführt werden, Wochenenden nach Vereinbarung.",
+      "heroDesc": "Erleben Sie ein großartiges Erlebnis, geeignet ab 18 Jahren. Die Pakete sind für 1 Person bestimmt. Für Jugendliche ab 12 Jahren nur mit Zustimmung der Eltern. Es ist möglich, die Pakete nach vorheriger telefonischer Vereinbarung unter 0911 650 032 zu absolvieren.",
       "vatInfo": "Preise inkl. MwSt. 23%",
       "safeExperience": "SICHERES ERLEBNIS",
       "instructorIncluded": "INSTRUKTOR INKLUSIVE",
       "infoText": "FÜR DIE BREITE ÖFFENTLICHKEIT IST EINE VORHERIGE TERMINBUCHUNG ERFORDERLICH.",
-      "infoSubtext": "Schießpakete können von 10:00 bis 19:00 Uhr und an Wochenenden nach Vereinbarung absolviert werden.",
+      "infoSubtext": "Schießpakete können nach vorheriger telefonischer Vereinbarung unter 0911 650 032 absolviert werden.",
       "checkAvailability": "Verfügbarkeit prüfen",
       "giftVoucherBadge": "Gutscheine",
       "giftVoucherTitle": "Schenken Sie",
@@ -1155,7 +1155,7 @@ export const translations = {
         ]
       },
       "chicago": {
-        "name": "Paket „CHICAGO“",
+        "name": "Paket „BOSTON GANG“",
         "details": [
           "8 Schuss Pistole RUGER 1911, Kal. 45ACP",
           "6 Schuss Revolver S&W, Kal. 44MAG",
@@ -1906,7 +1906,7 @@ export const translations = {
       "orderDesc3": " möglich. Unser Team berät Sie gerne bei der Auswahl.",
       "resTitle": "Terminreservierung",
       "resDesc1": "FÜR DIE ALLGEMEINE ÖFFENTLICHKEIT IST EINE VORHERIGE TERMINVEREINBARUNG ERFORDERLICH.",
-      "resDesc2": "Schießpakete können von 10:00 bis 19:00 Uhr und an Wochenenden nach Vereinbarung absolviert werden.",
+      "resDesc2": "Schießpakete können nach vorheriger Vereinbarung absolviert werden.",
       "weAreHere": "Wir sind für Sie da: Mo–Fr 08:00 – 21:00 | Sa–So 08:00 – 20:00"
     },
     "pricing": {
@@ -2082,12 +2082,12 @@ export const translations = {
       "heroBadge": "SHOOTING EXPERIENCE",
       "heroTitle": "SHOOTING",
       "heroTitleHighlight": "PACKAGES",
-      "heroDesc": "Experience a great time suitable for ages 18 and up. Packages are designed for 1 person. For youth from 12 years old exclusively with parental consent. Shooting packages are available Mon - Fri from 10:00 AM to 7:00 PM, weekends by appointment.",
+      "heroDesc": "Experience a great time suitable for ages 18 and up. Packages are designed for 1 person. For youth from 12 years old exclusively with parental consent. Available by prior telephone arrangement at 0911 650 032.",
       "vatInfo": "Prices include 23% VAT",
       "safeExperience": "SAFE EXPERIENCE",
       "instructorIncluded": "INSTRUCTOR INCLUDED",
       "infoText": "THE GENERAL PUBLIC MUST BOOK AN AVAILABLE TIME SLOT IN ADVANCE.",
-      "infoSubtext": "Shooting packages can be completed between 10:00 and 19:00 and on weekends by appointment.",
+      "infoSubtext": "Shooting packages can be completed by prior telephone arrangement at 0911 650 032.",
       "checkAvailability": "Check availability",
       "giftVoucherBadge": "Gift Vouchers",
       "giftVoucherTitle": "Gift",
@@ -2157,7 +2157,7 @@ export const translations = {
         ]
       },
       "chicago": {
-        "name": "Package „CHICAGO“",
+        "name": "Package „BOSTON GANG“",
         "details": [
           "8 shots RUGER 1911 pistol, .45ACP cal.",
           "6 shots S&W revolver, .44MAG cal.",
@@ -2908,7 +2908,7 @@ export const translations = {
       "orderDesc3": ". Our team will be happy to help you with your selection.",
       "resTitle": "Appointment Reservation",
       "resDesc1": "FOR THE GENERAL PUBLIC, IT IS NECESSARY TO BOOK AN APPOINTMENT IN ADVANCE.",
-      "resDesc2": "Shooting packages can be completed from 10:00 to 19:00 and on weekends by appointment.",
+      "resDesc2": "Shooting packages can be completed by prior appointment.",
       "weAreHere": "We are here for you: Mon–Fri 08:00 – 21:00 | Sat–Sun 08:00 – 20:00"
     },
     "pricing": {
@@ -3084,12 +3084,12 @@ export const translations = {
       "heroBadge": "СТРЕЛКОВЫЙ ОПЫТ",
       "heroTitle": "СТРЕЛКОВЫЕ",
       "heroTitleHighlight": "ПАКЕТЫ",
-      "heroDesc": "Получите отличные впечатления, подходит для лиц старше 18 лет. Пакеты рассчитаны на 1 человека. Для молодежи от 12 лет исключительно с согласия родителей. Стрелковые пакеты доступны Пн - Пт с 10:00 до 19:00, в выходные дни по предварительной записи.",
+      "heroDesc": "Получите отличные впечатления, подходит для лиц старше 18 лет. Пакеты рассчитаны на 1 человека. Для молодежи от 12 лет исключительно с согласия родителей. Возможно пройти по предварительной договоренности по телефону 0911 650 032.",
       "vatInfo": "Цены включают 23% НДС",
       "safeExperience": "БЕЗОПАСНЫЙ ОПЫТ",
       "instructorIncluded": "ИНСТРУКТОР ВКЛЮЧЕН В СТОИМОСТЬ",
       "infoText": "ШИРОКАЯ ПУБЛИКА ДОЛЖНА БРОНИРОВАТЬ СВОБОДНОЕ ВРЕМЯ ЗАРАНЕЕ.",
-      "infoSubtext": "Стрелковые пакеты можно пройти с 10:00 до 19:00 и в выходные дни по предварительной записи.",
+      "infoSubtext": "Стрелковые пакеты можно пройти по предварительной договоренности по телефону 0911 650 032.",
       "checkAvailability": "Проверить доступность",
       "giftVoucherBadge": "Подарочные сертификаты",
       "giftVoucherTitle": "Подарочный",
@@ -3159,7 +3159,7 @@ export const translations = {
         ]
       },
       "chicago": {
-        "name": "Пакет „ЧИКАГО“",
+        "name": "Пакет „BOSTON GANG“",
         "details": [
           "8 выстрелов из пистолета RUGER 1911, калибр 45ACP",
           "6 выстрелов из револьвера S&W, калибр 44MAG",
@@ -3910,7 +3910,7 @@ export const translations = {
       "orderDesc3": ". Наша команда с радостью поможет вам с выбором.",
       "resTitle": "Бронирование времени",
       "resDesc1": "ДЛЯ ШИРОКОЙ ПУБЛИКИ НЕОБХОДИМО БРОНИРОВАТЬ ВРЕМЯ ЗАРАНЕЕ.",
-      "resDesc2": "Стрелковые пакеты доступны с 10:00 до 19:00 и в выходные дни по предварительной записи.",
+      "resDesc2": "Стрелковые пакеты доступны по предварительной договоренности.",
       "weAreHere": "Мы здесь для вас: Пн–Пт 08:00 – 21:00 | Сб–Вс 08:00 – 20:00"
     },
     "pricing": {
