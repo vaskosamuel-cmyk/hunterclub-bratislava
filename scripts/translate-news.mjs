@@ -18,8 +18,9 @@ export async function translateNews() {
       // invalidates them instead of silently reusing a stale hidden CMS value.
       delete item[`body_${language}`];
       const key = createHash('sha256').update(`sk|${language}|${item.body}`).digest('hex');
-      // Opt-in only: enable after the owner authorizes this translation provider.
-      if (!cache[key] && process.env.NEWS_TRANSLATION_PROVIDER === 'mymemory') {
+      // Owner-authorized automatic translation of published announcements.
+      // Set NEWS_TRANSLATION_PROVIDER=off to retain cache-only operation.
+      if (!cache[key] && (process.env.NEWS_TRANSLATION_PROVIDER || 'mymemory') === 'mymemory') {
         try {
           const chunks = [];
           let chunk = '';
