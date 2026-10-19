@@ -171,7 +171,7 @@ export default function Home() {
         
         <div className="relative z-10">
           {/* Hero Section */}
-          <section className="relative min-h-[100svh] flex flex-col justify-center pt-32 pb-8 md:pt-36 md:pb-20">
+          <section className="relative min-h-[100svh] flex flex-col justify-center pt-24 pb-6 md:pt-36 md:pb-20">
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 xl:gap-12 items-center">
                 {/* Left Column: Hero Copy */}
@@ -189,7 +189,7 @@ export default function Home() {
                   >
                     <span className="w-12 h-[2px] bg-[var(--color-safety)]"></span>
                     <div className="flex items-center gap-2">
-                      <span className="text-[var(--color-safety)] font-bold tracking-[0.3em] uppercase text-xs">
+                      <span className="text-[var(--color-safety)] font-bold tracking-[0.18em] sm:tracking-[0.3em] uppercase text-[10px] sm:text-xs">
                         {t('home.heroBadge')}
                       </span>
                     </div>
@@ -248,7 +248,7 @@ export default function Home() {
                         <Star key={i} className="w-4 h-4 fill-current" />
                       ))}
                     </div>
-                    <span className="text-gray-300 text-xs sm:text-sm font-medium uppercase tracking-widest">
+                    <span className="text-gray-300 text-[10px] sm:text-sm font-medium uppercase tracking-wide sm:tracking-widest">
                       {t('home.rating')}
                     </span>
                   </motion.div>
