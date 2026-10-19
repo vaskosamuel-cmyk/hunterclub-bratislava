@@ -1,3 +1,4 @@
+import NewsTicker from './NewsTicker';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, MapPin, Phone, Mail, ChevronRight, MessageSquare, ChevronDown, Globe } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
@@ -52,64 +53,17 @@ function TrustBox() {
   );
 }
 
-const KNOWN_TRANSLATIONS: Record<string, { en?: string; de?: string; ru?: string }> = {
-  "Nájdete nás na adrese Kamenné nám. 1A (bývalý PRIOR, -2. poschodie). V prípade otázok volajte na +421 911 650 032": {
-    en: "You can find us at Kamenné nám. 1A (former PRIOR, -2nd floor). In case of questions, call +421 911 650 032",
-    de: "Sie finden uns unter der Adresse Kamenné nám. 1A (ehemaliges PRIOR, -2. Stock). Bei Fragen rufen Sie +421 911 650 032 an",
-    ru: "Мы находимся по адресу Kamenné nám. 1A (бывший PRIOR, -2 этаж). По вопросам звоните +421 911 650 032",
-  },
-};
-
 export default function Layout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCounselorOpen, setIsCounselorOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const [newsOpen, setNewsOpen] = useState(false);
-  const [aktualityData, setAktualityData] = useState<any>(null);
-  const [translatedAktuality, setTranslatedAktuality] = useState<Record<string, string>>({});
   const [closedDropdowns, setClosedDropdowns] = useState<Record<string, boolean>>({});
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState<Record<string, boolean>>({});
   const location = useLocation();
   const navigate = useNavigate();
   const { language, setLanguage, t } = useLanguage();
-
-  useEffect(() => {
-    fetch(`/content/aktuality.json?t=${new Date().getTime()}`)
-      .then(res => res.json())
-      .then(data => {
-        if (data && data.length > 0) {
-          const item = data[0];
-          setAktualityData(item);
-          
-          const translations: Record<string, string> = {};
-          
-          if (item.body_en) translations.en = item.body_en;
-          if (item.body_de) translations.de = item.body_de;
-          if (item.body_ru) translations.ru = item.body_ru;
-
-          if (item.body) {
-            const known = KNOWN_TRANSLATIONS[item.body.trim()];
-            if (known) {
-              if (!translations.en && known.en) translations.en = known.en;
-              if (!translations.de && known.de) translations.de = known.de;
-              if (!translations.ru && known.ru) translations.ru = known.ru;
-            }
-          }
-          
-          setTranslatedAktuality(translations);
-        }
-      })
-      .catch(err => console.warn("Error loading aktuality:", err));
-  }, []);
-
-  const currentAktualityMessage = aktualityData 
-    ? (language === 'en' && translatedAktuality.en) ? translatedAktuality.en
-    : (language === 'de' && translatedAktuality.de) ? translatedAktuality.de
-    : (language === 'ru' && translatedAktuality.ru) ? translatedAktuality.ru
-    : aktualityData.body
-    : null;
 
   const handleLanguageChange = (lang: string) => {
     setLanguage(lang as any);
@@ -351,18 +305,7 @@ export default function Layout() {
           </div>
         </div>
 
-        {/* Compact announcement disclosure; the label always remains visible. */}
-        <div className="bg-[var(--color-safety)] text-[var(--color-tactical)] border-t border-black/10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <button type="button" onClick={() => setNewsOpen(open => !open)} aria-expanded={newsOpen} aria-controls="header-news-content"
-              className="flex min-h-9 w-full items-center justify-center gap-2 py-2 text-xs font-bold uppercase tracking-[0.18em]">
-              {t('announcement')}<ChevronDown size={16} className={`transition-transform ${newsOpen ? 'rotate-180' : ''}`} />
-            </button>
-            <div id="header-news-content" hidden={!newsOpen} className="max-h-[40svh] overflow-y-auto border-t border-black/10 py-3 text-center">
-              <p className="mx-auto max-w-3xl text-sm font-medium leading-relaxed">{currentAktualityMessage || t('announcementText')}</p>
-            </div>
-          </div>
-        </div>
+        <NewsTicker />
 
         {/* Mobile menu */}
         {isMenuOpen && (
