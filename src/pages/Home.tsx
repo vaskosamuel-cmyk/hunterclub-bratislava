@@ -9,6 +9,7 @@ import { ReservationModal } from '../components/Modal';
 import Modal from '../components/Modal';
 import ShowcaseCard from '../components/ShowcaseCard';
 import ParallaxSection from '../components/ParallaxSection';
+import OwnerVideoPlayer from '../components/OwnerVideoPlayer';
 import { ALL_PACKAGES } from '../constants/packages';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -170,85 +171,104 @@ export default function Home() {
         
         <div className="relative z-10">
           {/* Hero Section */}
-          <section className="relative min-h-[100svh] flex items-center pt-32 pb-12 md:pt-40 md:pb-24">
+          <section className="relative min-h-[100svh] flex flex-col justify-center pt-28 pb-12 md:pt-36 md:pb-20">
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="max-w-4xl"
-          >
-            <motion.div 
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5 }}
-              className="flex items-center gap-3 mb-6"
-            >
-              <span className="w-12 h-[2px] bg-[var(--color-safety)]"></span>
-              <div className="flex items-center gap-2">
-                <span className="text-[var(--color-safety)] font-bold tracking-[0.3em] uppercase text-xs">
-                  {t('home.heroBadge')}
-                </span>
-              </div>
-            </motion.div>
-            
-            <h1 className="text-5xl md:text-[60px] md:leading-[66px] font-display tracking-tight mb-4 uppercase italic text-white">
-              {t('home.heroTitle')}<br />
-              <span className="text-[var(--color-safety)]">{t('home.heroSubtitle')}</span>
-            </h1>
-            
-            <div className="flex flex-col gap-4 mb-10 border-l-2 border-[var(--color-safety)]/30 pl-6">
-              {[
-                { text: t('home.heroBullets.safe'), icon: <Shield className="w-5 h-5" /> },
-                { text: t('home.heroBullets.instructors'), icon: <Users className="w-5 h-5" /> },
-                { text: t('home.heroBullets.arsenal'), icon: <Target className="w-5 h-5" /> }
-              ].map((item, i) => (
-                <motion.div 
-                  key={i}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.6 + (i * 0.1) }}
-                  className="flex items-center gap-4"
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 items-center">
+                {/* Left Column: Hero Copy */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="lg:col-span-7"
                 >
-                  <div className="text-[var(--color-safety)] drop-shadow-[0_0_8px_rgba(251,188,5,0.4)]">
-                    {item.icon}
+                  <motion.div 
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.4 }}
+                    className="flex items-center gap-3 mb-4"
+                  >
+                    <span className="w-12 h-[2px] bg-[var(--color-safety)]"></span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[var(--color-safety)] font-bold tracking-[0.3em] uppercase text-xs">
+                        {t('home.heroBadge')}
+                      </span>
+                    </div>
+                  </motion.div>
+                  
+                  <h1 className="text-4xl sm:text-5xl md:text-[60px] md:leading-[64px] font-display tracking-tight mb-3 uppercase italic text-white">
+                    {t('home.heroTitle')}<br />
+                    <span className="text-[var(--color-safety)]">{t('home.heroSubtitle')}</span>
+                  </h1>
+
+                  <p className="text-gray-300 text-sm sm:text-base mb-6 max-w-xl leading-relaxed">
+                    Zaži jedinečný zážitok pod dohľadom profesionálov. Bezpečne, legálne a s prvotriednym vybavením.
+                  </p>
+                  
+                  <div className="flex flex-col gap-3.5 mb-8 border-l-2 border-[var(--color-safety)]/30 pl-5">
+                    {[
+                      { text: t('home.heroBullets.safe'), icon: <Shield className="w-5 h-5" /> },
+                      { text: t('home.heroBullets.instructors'), icon: <Users className="w-5 h-5" /> },
+                      { text: t('home.heroBullets.arsenal'), icon: <Target className="w-5 h-5" /> }
+                    ].map((item, i) => (
+                      <motion.div 
+                        key={i}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.5 + (i * 0.1) }}
+                        className="flex items-center gap-3.5"
+                      >
+                        <div className="text-[var(--color-safety)] drop-shadow-[0_0_8px_rgba(251,188,5,0.4)]">
+                          {item.icon}
+                        </div>
+                        <span className="text-lg md:text-[20px] md:leading-[26px] text-gray-200 font-display uppercase italic tracking-widest">{item.text}</span>
+                      </motion.div>
+                    ))}
                   </div>
-                  <span className="text-[20px] leading-[28px] text-gray-200 font-display uppercase italic tracking-widest">{item.text}</span>
+
+                  <div className="flex flex-col sm:flex-row gap-3 md:gap-4 items-stretch sm:items-center mb-4">
+                    <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="flex">
+                      <button
+                        onClick={scrollToPathfinder}
+                        className="w-full sm:w-[240px] h-[56px] justify-center bg-[var(--color-emergency)] text-white rounded-sm font-display text-[20px] leading-[28px] font-bold tracking-wider hover:bg-red-700 transition-all shadow-[0_0_20px_rgba(255,68,68,0.3)] flex items-center gap-2"
+                      >
+                        {t('home.bookNow')}
+                        <ChevronRight className="w-5 h-5" />
+                      </button>
+                    </motion.div>
+                  </div>
+
+                  <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.8 }}
+                    className="flex items-center gap-2 mb-4 lg:mb-0"
+                  >
+                    <div className="flex text-yellow-400">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-current" />
+                      ))}
+                    </div>
+                    <span className="text-gray-300 text-xs sm:text-sm font-medium uppercase tracking-widest">
+                      {t('home.rating')}
+                    </span>
+                  </motion.div>
                 </motion.div>
-              ))}
-            </div>
 
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 items-stretch sm:items-center mb-4">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex">
-                <button
-                  onClick={scrollToPathfinder}
-                  className="w-[240px] h-[60px] justify-center bg-[var(--color-emergency)] text-white rounded-sm font-display text-[20px] leading-[28px] font-bold tracking-wider hover:bg-red-700 transition-all shadow-[0_0_20px_rgba(255,68,68,0.3)] flex items-center gap-2"
+                {/* Right Column (Desktop View): Vertical Video Player from Reference Image 2 */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="hidden lg:flex lg:col-span-5 justify-end"
                 >
-                  {t('home.bookNow')}
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              </motion.div>
-            </div>
-
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-              className="flex items-center gap-2 mb-10"
-            >
-              <div className="flex text-yellow-400">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-current" />
-                ))}
+                  <OwnerVideoPlayer variant="hero-desktop" />
+                </motion.div>
               </div>
-              <span className="text-gray-300 text-sm font-medium uppercase tracking-widest">
-                {t('home.rating')}
-              </span>
-            </motion.div>
 
-          </motion.div>
-        </div>
-      </section>
+              {/* Mobile Video Section: matching Reference Image 1 directly underneath the mobile hero copy */}
+              <OwnerVideoPlayer variant="section-mobile" />
+            </div>
+          </section>
 
       {/* Pathfinder (Bento) */}
       <section className="pt-8 md:pt-24 pb-24 relative">
