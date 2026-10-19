@@ -171,15 +171,15 @@ export default function Home() {
         
         <div className="relative z-10">
           {/* Hero Section */}
-          <section className="relative min-h-[100svh] flex flex-col justify-center pt-28 pb-12 md:pt-36 md:pb-20">
+          <section className="relative min-h-[100svh] flex flex-col justify-center pt-32 pb-8 md:pt-36 md:pb-20">
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 xl:gap-12 items-center">
                 {/* Left Column: Hero Copy */}
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="lg:col-span-7"
+                  className="lg:col-span-6"
                 >
                   <motion.div 
                     initial={{ opacity: 0, x: -20 }}
@@ -195,16 +195,16 @@ export default function Home() {
                     </div>
                   </motion.div>
                   
-                  <h1 className="text-4xl sm:text-5xl md:text-[60px] md:leading-[64px] font-display tracking-tight mb-3 uppercase italic text-white">
+                  <h1 className="text-[30px] leading-[1.05] sm:text-5xl md:text-[60px] md:leading-[64px] font-display tracking-tight mb-3 uppercase italic text-white">
                     {t('home.heroTitle')}<br />
                     <span className="text-[var(--color-safety)]">{t('home.heroSubtitle')}</span>
                   </h1>
 
-                  <p className="text-gray-300 text-sm sm:text-base mb-6 max-w-xl leading-relaxed">
+                  <p className="text-gray-300 text-[13px] sm:text-base mb-3 sm:mb-6 max-w-xl leading-relaxed">
                     Zaži jedinečný zážitok pod dohľadom profesionálov. Bezpečne, legálne a s prvotriednym vybavením.
                   </p>
                   
-                  <div className="flex flex-col gap-3.5 mb-8 border-l-2 border-[var(--color-safety)]/30 pl-5">
+                  <div className="hidden sm:flex flex-col gap-3.5 mb-8 border-l-2 border-[var(--color-safety)]/30 pl-5">
                     {[
                       { text: t('home.heroBullets.safe'), icon: <Shield className="w-5 h-5" /> },
                       { text: t('home.heroBullets.instructors'), icon: <Users className="w-5 h-5" /> },
@@ -229,7 +229,7 @@ export default function Home() {
                     <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="flex">
                       <button
                         onClick={scrollToPathfinder}
-                        className="w-full sm:w-[240px] h-[56px] justify-center bg-[var(--color-emergency)] text-white rounded-sm font-display text-[20px] leading-[28px] font-bold tracking-wider hover:bg-red-700 transition-all shadow-[0_0_20px_rgba(255,68,68,0.3)] flex items-center gap-2"
+                        className="w-full sm:w-[240px] h-[44px] sm:h-[56px] justify-center bg-[var(--color-emergency)] text-white rounded-sm font-display text-[20px] leading-[28px] font-bold tracking-wider hover:bg-red-700 transition-all shadow-[0_0_20px_rgba(255,68,68,0.3)] flex items-center gap-2"
                       >
                         {t('home.bookNow')}
                         <ChevronRight className="w-5 h-5" />
@@ -259,7 +259,7 @@ export default function Home() {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8, delay: 0.3 }}
-                  className="flex lg:col-span-5 justify-center lg:justify-end"
+                  className="flex lg:col-span-6 justify-center lg:justify-end"
                 >
                   <OwnerVideoPlayer />
                 </motion.div>
