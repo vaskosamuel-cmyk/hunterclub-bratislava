@@ -1,3 +1,4 @@
+import ClubFilm from '../components/ClubFilm';
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import { ChevronRight, Target, Shield, Users, Clock, MapPin, ArrowRight, Zap, Star, Mail, ChevronDown, Calendar, CheckCircle2 } from 'lucide-react';
@@ -171,7 +172,7 @@ export default function Home() {
         
         <div className="relative z-10">
           {/* Hero Section */}
-          <section className="relative min-h-[100svh] flex flex-col justify-center pt-24 pb-6 md:pt-36 md:pb-20">
+          <section className="relative min-h-[100svh] flex flex-col justify-center pt-28 pb-6 md:pt-36 md:pb-20">
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 xl:gap-12 items-center">
                 {/* Left Column: Hero Copy */}
@@ -553,6 +554,8 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      <ClubFilm />
 
       {/* FAQ Section */}
       <section className="py-20 relative">
