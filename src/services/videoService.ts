@@ -10,6 +10,11 @@ export interface VideoItem {
   orientation?: 'portrait' | 'landscape' | 'square';
 }
 export const MAX_VIDEO_SIZE = 2 * 1024 * 1024 * 1024;
+export function selectHeroVideos(items: VideoItem[], selectedId?: string) {
+  const videos = [...items].sort((a, b) => (Date.parse(b.createdAt || '') || 0) - (Date.parse(a.createdAt || '') || 0)).slice(0, 5);
+  const current = videos.find(item => item.id === selectedId) || videos[0];
+  return { videos, current, choices: videos.filter(item => item.id !== current?.id) };
+}
 async function readVideoMetadata(file: File): Promise<Partial<VideoItem>> {
   return new Promise(resolve => {
     const url = URL.createObjectURL(file);
