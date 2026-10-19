@@ -1,8 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, useParams } from 'react-router-dom';
-import { AnimatePresence, motion } from 'motion/react';
 import Layout from './components/Layout';
-import LoadingScreen from './components/LoadingScreen';
 import ScrollToTop from './components/ScrollToTop';
 import GiftVoucherPopup from './components/GiftVoucherPopup';
 import Home from './pages/Home';
@@ -24,6 +22,7 @@ import Psychotesty from './pages/Psychotesty';
 import ZakladnyKurz from './pages/ZakladnyKurz';
 import TeoretickaPriprava from './pages/TeoretickaPriprava';
 import Teambuilding from './pages/Teambuilding';
+import Upload from './pages/Upload';
 
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 
@@ -97,35 +96,19 @@ function LanguageSync() {
 }
 
 export default function App() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 600); // 0.6 second loading
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <LanguageProvider>
       <Router>
         <PageTracker />
         <LanguageSync />
         <ScrollToTop />
-        <AnimatePresence mode="wait">
-          {loading ? (
-            <LoadingScreen key="loading" />
-          ) : (
-            <motion.div
-              key="content"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-            >
               <Routes>
                 {/* Redirect root to current language */}
                 <Route path="/" element={<RootRedirect />} />
+                
+                {/* Direct upload routes for the owner */}
+                <Route path="/upload" element={<Upload />} />
+                <Route path="/:lng/upload" element={<Upload />} />
                 
                 {/* Language prefixed routes */}
                 <Route path="/:lng/action" element={<ActionRouteEnforcer />} />
@@ -152,9 +135,6 @@ export default function App() {
                 </Route>
                 <Route path="*" element={<NotFoundRedirect />} />
               </Routes>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </Router>
     </LanguageProvider>
   );
