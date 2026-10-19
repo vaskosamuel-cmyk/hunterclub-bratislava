@@ -10,15 +10,25 @@ collections:
     label: "Aktuality (Žlté okno)"
     folder: "public/content/aktuality"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{year}}-{{month}}-{{day}}-{{hour}}{{minute}}{{second}}"
     extension: "json"
     format: "json"
+    summary: "{{category}} — {{body}}"
     fields:
-      - {label: "Nadpis", name: "title", widget: "string"}
-      - {label: "Dátum", name: "date", widget: "datetime", format: "DD.MM.YYYY"}
-      - {label: "Text oznamu", name: "body", widget: "text"}
-      - {label: "Text oznamu (Anglicky - voliteľné)", name: "body_en", widget: "text", required: false}
-      - {label: "Text oznamu (Nemecky - voliteľné)", name: "body_de", widget: "text", required: false}
+      - label: "Kategória"
+        name: "category"
+        widget: "select"
+        options: ["OZNAM", "AKTUALITY", "POZOR!", "KURZY", "OTVÁRACIE HODINY", "NOVINKA"]
+        default: "OZNAM"
+      - {label: "Text oznamu", name: "body", widget: "text", hint: "Napíšte celý oznam po slovensky. Prvá veta sa automaticky zobrazí v páse."}
+      - {label: "Dátum", name: "date", widget: "datetime", format: "DD.MM.YYYY", time_format: false}
+      - {label: "Aktívny", name: "active", widget: "boolean", default: true}
+      - {label: "Platný do (vrátane)", name: "expires", widget: "datetime", format: "YYYY-MM-DD", time_format: false, required: false}
+      # Hidden legacy fields preserve existing values when an old announcement is edited.
+      - {name: "title", widget: "hidden", default: "Oznam", required: false}
+      - {name: "body_en", widget: "hidden", required: false}
+      - {name: "body_de", widget: "hidden", required: false}
+      - {name: "body_ru", widget: "hidden", required: false}
 
   - name: "psychotesty"
     label: "Termíny psychotestov"
