@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Play } from 'lucide-react';
-import { fetchVideos, VideoItem } from '../services/videoService';
+import { fetchVideos, selectHeroVideos, VideoItem } from '../services/videoService';
 
 interface Preview { url?: string; ratio: number; duration?: number }
 const previews = new Map<string, Promise<Preview>>();
@@ -65,13 +65,23 @@ export default function OwnerVideoPlayer({ className = '' }: { className?: strin
   const [failed, setFailed] = useState(false);
   const [paused, setPaused] = useState(true);
   const player = useRef<HTMLVideoElement>(null);
+  const newestId = useRef<string>();
   useEffect(() => {
     let active = true;
-    const refresh = () => fetchVideos().then(items => { if (active) setVideos(items); }).catch(() => {});
+    const refresh = () => fetchVideos().then(items => {
+      if (!active) return;
+      const latest = selectHeroVideos(items).videos;
+      // A newly published video becomes the main video on refresh/focus too.
+      if (newestId.current !== latest[0]?.id) {
+        newestId.current = latest[0]?.id;
+        setSelectedId(latest[0]?.id);
+      }
+      setVideos(latest);
+    }).catch(() => {});
     void refresh(); window.addEventListener('focus', refresh); window.addEventListener('hunterclub_videos_updated', refresh);
     return () => { active = false; window.removeEventListener('focus', refresh); window.removeEventListener('hunterclub_videos_updated', refresh); };
   }, []);
-  const current = videos.find(item => item.id === selectedId) || videos[0];
+  const { current, choices } = selectHeroVideos(videos, selectedId);
   const preview = usePreview(current);
   useEffect(() => { setFailed(false); setPaused(true); }, [current?.id]);
   return <div className={`hc-video-layout w-full ${className}`}>
@@ -109,8 +119,8 @@ export default function OwnerVideoPlayer({ className = '' }: { className?: strin
       </div>
       {failed && <p role="alert" className="mt-2 text-center text-xs text-red-300">Video sa nepodarilo prehrať.</p>}
     </div>
-    {videos.length > 1 && <div className="hc-video-choices" role="group" aria-label="Výber videa">
-      {videos.map(item => <div key={item.id} className="shrink-0"><VideoChoice item={item} selected={item.id === current?.id} onClick={() => setSelectedId(item.id)} /></div>)}
+    {choices.length > 0 && <div className="hc-video-choices" role="group" aria-label="Výber videa">
+      {choices.map(item => <div key={item.id} className="shrink-0"><VideoChoice item={item} selected={false} onClick={() => setSelectedId(item.id)} /></div>)}
     </div>}
   </div>;
 }
