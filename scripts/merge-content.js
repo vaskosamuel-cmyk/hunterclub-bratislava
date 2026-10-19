@@ -1,3 +1,4 @@
+import { translateNews } from './translate-news.mjs';
 import fs from 'fs';
 import path from 'path';
 
@@ -64,3 +65,5 @@ mergeFolder('teoria', 'teoria.json', (a, b) => {
   return dateA - dateB;
 });
 
+
+await translateNews();

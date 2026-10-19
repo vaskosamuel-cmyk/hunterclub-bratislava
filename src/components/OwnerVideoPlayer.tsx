@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Play } from 'lucide-react';
 import { fetchVideos, VideoItem } from '../services/videoService';
 
-interface Preview { url?: string; ratio: number }
+interface Preview { url?: string; ratio: number; duration?: number }
 const previews = new Map<string, Promise<Preview>>();
 // Capture a real frame for existing uploads too; no new upload or backend migration is needed.
 function getPreview(item: VideoItem): Promise<Preview> {
   if (!previews.has(item.videoUrl)) previews.set(item.videoUrl, new Promise(resolve => {
     const media = document.createElement('video');
     media.crossOrigin = 'anonymous'; media.muted = true; media.playsInline = true; media.preload = 'auto';
-    let ratio = 9 / 16, settled = false;
+    let ratio = item.width && item.height ? item.width / item.height : 9 / 16, duration = item.duration, settled = false;
     const finish = (url?: string) => {
       if (settled) return; settled = true; clearTimeout(timeout);
       media.onloadedmetadata = media.onloadeddata = media.onseeked = media.onerror = null;
-      media.removeAttribute('src'); media.load(); resolve({ url: item.posterUrl || url, ratio });
+      media.removeAttribute('src'); media.load(); resolve({ url: item.posterUrl || url, ratio, duration });
     };
     const capture = () => {
       if (!media.videoWidth || media.readyState < 2) return;
@@ -27,6 +27,7 @@ function getPreview(item: VideoItem): Promise<Preview> {
     const timeout = window.setTimeout(() => finish(), 15000);
     media.onloadedmetadata = () => {
       ratio = media.videoWidth / media.videoHeight || ratio;
+      duration = Number.isFinite(media.duration) ? media.duration : undefined;
       media.currentTime = Math.min(1, Number.isFinite(media.duration) ? media.duration / 3 : 0.1);
     };
     media.onseeked = capture;
@@ -35,7 +36,7 @@ function getPreview(item: VideoItem): Promise<Preview> {
   }));
   return previews.get(item.videoUrl)!;
 }
-function usePreview(item?: VideoItem) {
+export function usePreview(item?: VideoItem) {
   const [result, setResult] = useState<Preview>({ ratio: 9 / 16 });
   useEffect(() => {
     let active = true; setResult({ url: item?.posterUrl, ratio: 9 / 16 });
@@ -44,22 +45,26 @@ function usePreview(item?: VideoItem) {
   }, [item?.videoUrl, item?.posterUrl]);
   return result;
 }
+function durationLabel(value?: number) {
+  return value && Number.isFinite(value) ? `${Math.floor(value / 60)}:${String(Math.floor(value % 60)).padStart(2, '0')}` : '';
+}
 function VideoChoice({ item, selected, onClick }: { item: VideoItem; selected: boolean; onClick: () => void }) {
   const preview = usePreview(item);
   return <button type="button" onClick={onClick} aria-label={item.title} aria-pressed={selected}
-    className={`hc-video-choice group shrink-0 overflow-hidden rounded-lg border text-left transition-colors ${selected ? 'border-[var(--color-safety)] bg-white/10' : 'border-white/15 hover:border-white/50'}`}>
-    <div className="relative aspect-video overflow-hidden bg-white/5">
-      {preview.url ? <img src={preview.url} alt="" className="h-full w-full object-cover" /> : <video src={`${item.videoUrl}#t=0.1`} muted playsInline preload="metadata" aria-hidden="true" className="h-full w-full object-cover" />}
-      <span className="absolute inset-0 flex items-center justify-center bg-black/10"><Play size={18} fill="currentColor" className="text-white drop-shadow-lg" /></span>
-    </div>
-    <span className="block truncate px-2 py-1.5 text-[11px] leading-tight text-white">{item.title}</span>
+    className={`hc-video-choice group ${selected ? 'is-selected' : ''}`}>
+    {preview.url ? <img src={preview.url} alt="" /> : <video src={`${item.videoUrl}#t=0.1`} muted playsInline preload="metadata" aria-hidden="true" />}
+    <span className="hc-choice-shade" />
+    <span className="hc-choice-play"><Play size={17} fill="currentColor" /></span>
+    <span className="hc-choice-title">{item.title}</span>
+    <span className="hc-choice-duration">{durationLabel(preview.duration || item.duration)}</span>
   </button>;
 }
 export default function OwnerVideoPlayer({ className = '' }: { className?: string }) {
   const [videos, setVideos] = useState<VideoItem[]>([]);
   const [selectedId, setSelectedId] = useState<string>();
   const [failed, setFailed] = useState(false);
-  const [ratio, setRatio] = useState(9 / 16);
+  const [paused, setPaused] = useState(true);
+  const player = useRef<HTMLVideoElement>(null);
   useEffect(() => {
     let active = true;
     const refresh = () => fetchVideos().then(items => { if (active) setVideos(items); }).catch(() => {});
@@ -68,22 +73,40 @@ export default function OwnerVideoPlayer({ className = '' }: { className?: strin
   }, []);
   const current = videos.find(item => item.id === selectedId) || videos[0];
   const preview = usePreview(current);
-  useEffect(() => { setFailed(false); setRatio(preview.ratio); }, [current?.id, preview.ratio]);
+  useEffect(() => { setFailed(false); setPaused(true); }, [current?.id]);
   return <div className={`hc-video-layout w-full ${className}`}>
     <style>{`
       .hc-video-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;max-width:720px;margin:auto}
-      .hc-video-stage{width:min(100%,calc(30svh * var(--video-ratio)));aspect-ratio:var(--video-ratio);margin:auto;background:#080808;overflow:hidden;border-radius:12px;border:1px solid #ffffff24}
-      .hc-video-choices{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 6px;scroll-snap-type:x proximity;max-width:100%}
-      .hc-video-choice{width:88px;scroll-snap-align:start}
-      @media(min-width:1024px){.hc-video-layout:has(.hc-video-choices){grid-template-columns:minmax(0,1fr) 104px;align-items:center}.hc-video-stage{width:min(100%,calc(62svh * var(--video-ratio)))}.hc-video-choices{flex-direction:column;max-height:62svh;overflow-y:auto;overflow-x:hidden;padding:2px 5px 2px 2px}.hc-video-choice{width:96px}}
+      .hc-video-stage{position:relative;width:min(78vw,280px);aspect-ratio:9/16;margin:auto;background:#0b0b0b;overflow:hidden;border-radius:18px;border:1px solid #ffffff55;box-shadow:0 16px 48px #0006}
+      .hc-video-stage>video{position:relative;width:100%;height:100%;object-fit:contain;z-index:1}
+      .hc-video-blur{position:absolute;inset:-24px;background-size:cover;background-position:center;filter:blur(24px);opacity:.24;pointer-events:none}
+      .hc-video-top{position:absolute;z-index:2;left:14px;right:14px;top:14px;pointer-events:none;display:flex;align-items:center;gap:6px}
+      .hc-video-top span{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;border:1px solid #ffffff45;background:#10111099;border-radius:999px;padding:5px 11px;color:white;font-size:11px}
+      .hc-video-start{position:absolute;z-index:3;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;border:1px solid #ffffffb3;background:#10111066;display:grid;place-items:center;color:white;box-shadow:0 4px 30px #0005}
+      .hc-video-start:hover{background:#10111099}.hc-video-start:focus-visible,.hc-video-choice:focus-visible{outline:3px solid var(--color-safety);outline-offset:4px}
+      .hc-video-choices{display:flex;gap:10px;overflow-x:auto;padding:3px 3px 8px;scroll-snap-type:x proximity;max-width:100%;justify-content:flex-start}
+      .hc-video-choice{position:relative;display:block;width:124px;aspect-ratio:16/9;overflow:hidden;border-radius:10px;border:1px solid #ffffff40;background:#131513;text-align:left;scroll-snap-align:start;transition:border-color .2s,box-shadow .2s}
+      .hc-video-choice.is-selected{border:2px solid var(--color-safety);box-shadow:0 0 0 1px #fbc40522}.hc-video-choice:hover{border-color:var(--color-safety)}
+      .hc-video-choice>img,.hc-video-choice>video{width:100%;height:100%;object-fit:cover}
+      .hc-choice-shade{position:absolute;inset:0;background:linear-gradient(transparent 20%,#000c)}
+      .hc-choice-play{position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);color:white;filter:drop-shadow(0 2px 5px #000)}
+      .is-selected .hc-choice-play{color:var(--color-safety)}
+      .hc-choice-title{position:absolute;bottom:8px;left:9px;right:37px;font-size:11px;line-height:1.2;font-weight:600;color:white;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+      .hc-choice-duration{position:absolute;bottom:8px;right:7px;font-size:10px;color:#fff9;font-variant-numeric:tabular-nums}
+      @media(max-width:767px) and (max-height:850px){.hc-video-stage{width:min(78vw,280px,calc(43svh * 9 / 16))}}
+      @media(min-width:768px){.hc-video-stage{width:min(360px,calc(64svh * 9 / 16))}.hc-video-choice{width:160px}}
+      @media(min-width:1024px){.hc-video-layout:has(.hc-video-choices){grid-template-columns:minmax(0,1fr) clamp(128px,13vw,220px);gap:18px;align-items:start}.hc-video-stage{width:min(100%,380px,calc(70svh * 9 / 16))}.hc-video-choices{flex-direction:column;gap:14px;max-height:70svh;overflow-y:auto;overflow-x:hidden;padding:3px 3px 6px}.hc-video-choice{width:100%}}
+      @media(prefers-reduced-motion:reduce){.hc-video-choice{transition:none}}
     `}</style>
     <div className="min-w-0">
-      <div className="hc-video-stage" style={{ '--video-ratio': ratio } as React.CSSProperties} aria-label={current?.title || 'Video'}>
-        {current && <video key={current.id} src={current.videoUrl} poster={preview.url || current.posterUrl} controls playsInline preload="auto"
-          onLoadedMetadata={event => { const v = event.currentTarget; if (v.videoWidth && v.videoHeight) setRatio(v.videoWidth / v.videoHeight); }}
-          onError={() => setFailed(true)} aria-label={current.title} className="h-full w-full object-contain" />}
+      <div className="hc-video-stage" aria-label={current?.title || 'Video'}>
+        {preview.url && preview.ratio >= 1 && <div className="hc-video-blur" style={{ backgroundImage: `url("${preview.url}")` }} />}
+        {current && <video ref={player} key={current.id} src={current.videoUrl} poster={preview.url || current.posterUrl} controls playsInline preload="metadata"
+          onPlay={() => setPaused(false)} onPause={() => setPaused(true)} onEnded={() => setPaused(true)}
+          onError={() => setFailed(true)} aria-label={current.title} />}
+        {current && <div className="hc-video-top"><span>{current.title}</span></div>}
+        {current && paused && !failed && <button type="button" className="hc-video-start" aria-label={`Prehrať: ${current.title}`} onClick={() => { void player.current?.play().catch(() => setFailed(true)); }}><Play size={28} fill="currentColor" className="ml-1" /></button>}
       </div>
-      {current && <p className="mt-2 text-center text-xs leading-tight text-white/80">{current.title}</p>}
       {failed && <p role="alert" className="mt-2 text-center text-xs text-red-300">Video sa nepodarilo prehrať.</p>}
     </div>
     {videos.length > 1 && <div className="hc-video-choices" role="group" aria-label="Výber videa">

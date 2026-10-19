@@ -4,8 +4,29 @@ export interface VideoItem {
   videoUrl: string;
   posterUrl?: string;
   createdAt?: string;
+  width?: number;
+  height?: number;
+  duration?: number;
+  orientation?: 'portrait' | 'landscape' | 'square';
 }
 export const MAX_VIDEO_SIZE = 2 * 1024 * 1024 * 1024;
+async function readVideoMetadata(file: File): Promise<Partial<VideoItem>> {
+  return new Promise(resolve => {
+    const url = URL.createObjectURL(file);
+    const media = document.createElement('video');
+    const finish = (data: Partial<VideoItem> = {}) => {
+      clearTimeout(timer); media.onloadedmetadata = media.onerror = null;
+      media.removeAttribute('src'); media.load(); URL.revokeObjectURL(url); resolve(data);
+    };
+    const timer = window.setTimeout(() => finish(), 15000);
+    media.preload = 'metadata';
+    media.onloadedmetadata = () => {
+      const width = media.videoWidth, height = media.videoHeight;
+      finish(width && height ? { width, height, duration: Number.isFinite(media.duration) ? media.duration : undefined, orientation: width === height ? 'square' : width > height ? 'landscape' : 'portrait' } : {});
+    };
+    media.onerror = () => finish(); media.src = url;
+  });
+}
 const API_BASE = ((import.meta as any).env?.VITE_API_BASE_URL || 'https://hunterclub-video-backend.vasko-samuel.workers.dev').replace(/\/$/, '');
 
 function base() {
@@ -50,8 +71,9 @@ function uploadPart(url: string, chunk: Blob, pin: string, onProgress: (bytes: n
 export async function publishVideo(file: File, title: string, pin: string, onProgress: (percent: number) => void): Promise<VideoItem> {
   if (!title || title.length > 120 || !file.size || file.size > MAX_VIDEO_SIZE) throw new Error('Skontrolujte názov a veľkosť videa.');
   const headers = { 'Content-Type': 'application/json', 'X-Admin-PIN': pin };
+  const metadata = await readVideoMetadata(file);
   const session = await checked(await fetch(`${base()}/api/uploads`, {
-    method: 'POST', headers, body: JSON.stringify({ title, filename: file.name, contentType: file.type, size: file.size }),
+    method: 'POST', headers, body: JSON.stringify({ title, filename: file.name, contentType: file.type, size: file.size, ...metadata }),
   }));
   const endpoint = `${base()}/api/uploads/${session.id}`;
   const parts: { partNumber: number; etag: string }[] = [];

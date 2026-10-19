@@ -1,0 +1,22 @@
+{
+  "name": "hunterclub-cloudflare-worker",
+  "version": "1.0.0",
+  "description": "Cloudflare Worker + R2 + D1 backend for Hunter Club Owner Video Player",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:create": "wrangler d1 create hunterclub-videos",
+    "db:init": "wrangler d1 execute hunterclub-videos --remote --file=./schema.sql",
+    "r2:create": "wrangler r2 bucket create hunterclub-videos",
+    "secret:pin": "wrangler secret put OWNER_PIN",
+    "check": "tsc --noEmit",
+    "db:init:local": "wrangler d1 execute hunterclub-videos --local --file=./schema.sql"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250224.0",
+    "typescript": "^5.8.2",
+    "wrangler": "^3.111.0"
+  },
+  "type": "module"
+}

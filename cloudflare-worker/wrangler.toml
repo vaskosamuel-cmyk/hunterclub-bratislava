@@ -1,0 +1,18 @@
+name = "hunterclub-video-backend"
+main = "src/index.ts"
+compatibility_date = "2026-10-19"
+workers_dev = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "hunterclub-videos"
+# Created in the Hunter Club Cloudflare account.
+database_id = "de31c028-fc12-4bca-af29-3d3269ac043f"
+
+[[r2_buckets]]
+binding = "VIDEOS_BUCKET"
+bucket_name = "hunterclub-videos"
+
+[vars]
+CORS_ORIGIN = "https://hunterclub.sk,https://www.hunterclub.sk,https://hunterclubstrelnica.netlify.app,http://localhost:3000,http://localhost:4175"
+# OWNER_PIN must be configured with `npm run secret:pin`. Never put it in VITE_*.
