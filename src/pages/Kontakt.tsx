@@ -1,4 +1,4 @@
-import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Navigation } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import Breadcrumbs from '../components/Breadcrumbs';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -118,6 +118,22 @@ export default function Kontakt() {
                       ))}
                     </div>
                   )}
+
+                  <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    {[
+                      { title: 'rangeTitle', button: 'rangeNavigate', href: 'https://maps.app.goo.gl/nMBEGWu43ehKP3637' },
+                      { title: 'parkingTitle', button: 'parkingNavigate', href: 'https://maps.app.goo.gl/Nr7jDQ2s4MjmitM59' },
+                    ].map(destination => (
+                      <div key={destination.title} className="min-w-0">
+                        <h4 className="mb-2 text-sm font-bold uppercase tracking-wider text-white">{t(`kontakt.${destination.title}`)}</h4>
+                        <a href={destination.href} target="_blank" rel="noopener noreferrer"
+                          className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-[var(--color-safety)] px-3 py-3 text-center text-sm font-bold text-[var(--color-tactical)] hover:bg-yellow-500 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-safety)]">
+                          <Navigation className="h-4 w-4 shrink-0" aria-hidden="true" />
+                          {t(`kontakt.${destination.button}`)}
+                        </a>
+                      </div>
+                    ))}
+                  </div>
 
                   <div className="mt-6 rounded-xl overflow-hidden border border-white/10 relative shadow-lg">
                     <img 
