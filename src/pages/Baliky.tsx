@@ -162,7 +162,7 @@ export default function Baliky() {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '-20%']);
 
   const getPackageImage = (name: string) => {
-    if (name === 'FIRST TIME') return '/hunterclubglock.webp';
+    if (name === 'FIRST TIME') return '/performance/hunterclubglock-1600.webp';
     if (name === 'ACTION HERO') return '/hunterclubzbrane.webp';
     return '/hunterclubstreleckybalicek.webp';
   };
@@ -174,7 +174,7 @@ export default function Baliky() {
         <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
           <motion.img 
             style={{ y: backgroundY }}
-            src="/hunterclubshooting.webp" 
+            src="/performance/hunterclubshooting-1600.webp"
             alt="Background" 
             className="w-full h-[130vh] object-cover opacity-60"
             referrerPolicy="no-referrer"

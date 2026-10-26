@@ -18,7 +18,7 @@ export default function Strelnica() {
             style={{ y: backgroundY }}
             src="/hunterclubstrelnica-bg.webp" 
             onError={(e) => {
-              (e.target as HTMLImageElement).src = '/hunterclubstrelnica1.webp';
+              (e.target as HTMLImageElement).src = '/performance/hunterclubstrelnica1-1600.webp';
             }}
             alt="Strelnica Hunter Club" 
             className="w-full h-[130vh] object-cover opacity-50"
@@ -169,7 +169,7 @@ export default function Strelnica() {
               <img 
                 src="/hunterclub-lane.webp" 
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/hunterclubstrelnica1.webp';
+                  (e.target as HTMLImageElement).src = '/performance/hunterclubstrelnica1-1600.webp';
                 }}
                 alt="Strelnica Hunter Club" 
                 className="rounded-sm shadow-2xl relative z-10 h-[400px] w-full object-cover"

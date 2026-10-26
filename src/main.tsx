@@ -8,8 +8,3 @@ createRoot(document.getElementById('root')!).render(
     <App />
   </StrictMode>,
 );
-
-// Prevent Flash of Unstyled Text (FOUT) by waiting for fonts to load
-document.fonts.ready.then(() => {
-  document.getElementById('root')?.classList.add('fonts-loaded');
-});

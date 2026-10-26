@@ -150,7 +150,7 @@ export default function Action() {
           <img
             src="/hunterclubstrelnica-bg.webp"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = '/hunterclubshooting.webp';
+              (e.target as HTMLImageElement).src = '/performance/hunterclubshooting-1600.webp';
             }}
             alt="Shooting Experience"
             className="w-full h-full object-cover"

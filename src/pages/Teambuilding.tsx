@@ -15,7 +15,7 @@ export default function Teambuilding() {
         <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
           <motion.img 
             style={{ y: backgroundY }}
-            src="/hunterclubshooting.webp" 
+            src="/performance/hunterclubshooting-1600.webp"
             alt="Teambuilding Background" 
             className="w-full h-[130vh] object-cover opacity-60"
             referrerPolicy="no-referrer"
