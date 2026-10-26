@@ -32,6 +32,7 @@ export default function ParallaxSection({
       >
         <img 
           src={bgImage}
+          loading="lazy" decoding="async"
           alt="Background"
           className={`w-full h-[104%] ${imageClassName}`}
           referrerPolicy="no-referrer"

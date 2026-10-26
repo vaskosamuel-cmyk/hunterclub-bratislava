@@ -162,7 +162,9 @@ export default function Home() {
         <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
           <motion.img 
             style={{ y: backgroundY }}
-            src="/hunterclub3.webp" 
+            src="/performance/hunterclub3-1920.webp"
+            srcSet="/performance/hunterclub3-960.webp 960w, /performance/hunterclub3-1920.webp 1920w" sizes="100vw"
+            fetchPriority="high"
             alt="Background" 
             className="w-full h-[120vh] object-cover opacity-60"
             referrerPolicy="no-referrer"
@@ -306,9 +308,9 @@ export default function Home() {
               className="relative min-h-[450px] rounded-sm overflow-hidden group border-2 border-[var(--color-safety)]/50 hover:border-[var(--color-safety)] shadow-[0_0_15px_rgba(251,188,5,0.15)] transition-colors flex flex-col"
             >
               <img
-                src="/hunterclub-experience1.webp"
+                loading="lazy" decoding="async" src="/performance/hunterclub-experience1-1600.webp"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/hunterclubshooting.webp';
+                  (e.target as HTMLImageElement).src = '/performance/hunterclubshooting-1600.webp';
                 }}
                 alt="Beginner"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -339,9 +341,9 @@ export default function Home() {
               className="relative min-h-[450px] rounded-sm overflow-hidden group cursor-pointer border-2 border-red-600/50 hover:border-red-600 shadow-[0_0_15px_rgba(220,38,38,0.15)] transition-colors flex flex-col"
             >
               <img
-                src="/hunterclub-experience2.webp"
+                loading="lazy" decoding="async" src="/performance/hunterclub-experience2-1600.webp"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/hunterclubglock.webp';
+                  (e.target as HTMLImageElement).src = '/performance/hunterclubglock-1600.webp';
                 }}
                 alt="Pro Shooter"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -373,7 +375,7 @@ export default function Home() {
       </div>
 
       <ParallaxSection 
-        bgImage="/hunterclubstrelnica1.webp"
+        bgImage="/performance/hunterclubstrelnica1-1600.webp"
         overlayClass="bg-gradient-to-b from-[#0D0D0D] via-[#0D0D0D]/40 to-[#0D0D0D]"
       >
       {/* How it works (Ako to prebieha) */}
@@ -505,7 +507,7 @@ export default function Home() {
       </ParallaxSection>
 
       <ParallaxSection 
-        bgImage="/hunterclubglock.webp"
+        bgImage="/performance/hunterclubglock-1600.webp"
         overlayClass="bg-gradient-to-b from-[#0D0D0D] via-[#0D0D0D]/80 to-[#0D0D0D]"
       >
       {/* Teambuilding Banner */}
@@ -515,7 +517,7 @@ export default function Home() {
             {/* Background Texture */}
             <div className="absolute inset-0 z-0">
               <img 
-                src="/hunterclubshooting.webp" 
+                loading="lazy" decoding="async" src="/performance/hunterclubshooting-1600.webp"
                 alt="Teambuilding Hunter Club" 
                 className="w-full h-full object-cover opacity-20 group-hover:scale-105 group-hover:opacity-30 transition-all duration-700" 
                 referrerPolicy="no-referrer"

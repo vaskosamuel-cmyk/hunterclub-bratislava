@@ -1,28 +1,28 @@
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, useParams } from 'react-router-dom';
 import Layout from './components/Layout';
 import ScrollToTop from './components/ScrollToTop';
 import GiftVoucherPopup from './components/GiftVoucherPopup';
 import Home from './pages/Home';
-import Strelnica from './pages/Strelnica';
-import Baliky from './pages/Baliky';
-import Kurzy from './pages/Kurzy';
-import TaktickyVycvik from './pages/TaktickyVycvik';
-import Cennik from './pages/Cennik';
-import Kontakt from './pages/Kontakt';
-import PrivacyPolicy from './pages/PrivacyPolicy';
-import Terms from './pages/Terms';
-import BeginnerExperience from './pages/BeginnerExperience';
-import ProExperience from './pages/ProExperience';
-import ZbrojnyPreukaz from './pages/ZbrojnyPreukaz';
-import SportClub from './pages/SportClub';
-import Action from './pages/Action';
-import DarcekovyPoukaz from './pages/DarcekovyPoukaz';
-import Psychotesty from './pages/Psychotesty';
-import ZakladnyKurz from './pages/ZakladnyKurz';
-import TeoretickaPriprava from './pages/TeoretickaPriprava';
-import Teambuilding from './pages/Teambuilding';
-import Upload from './pages/Upload';
+const Strelnica = lazy(() => import('./pages/Strelnica'));
+const Baliky = lazy(() => import('./pages/Baliky'));
+const Kurzy = lazy(() => import('./pages/Kurzy'));
+const TaktickyVycvik = lazy(() => import('./pages/TaktickyVycvik'));
+const Cennik = lazy(() => import('./pages/Cennik'));
+const Kontakt = lazy(() => import('./pages/Kontakt'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const Terms = lazy(() => import('./pages/Terms'));
+const BeginnerExperience = lazy(() => import('./pages/BeginnerExperience'));
+const ProExperience = lazy(() => import('./pages/ProExperience'));
+const ZbrojnyPreukaz = lazy(() => import('./pages/ZbrojnyPreukaz'));
+const SportClub = lazy(() => import('./pages/SportClub'));
+const Action = lazy(() => import('./pages/Action'));
+const DarcekovyPoukaz = lazy(() => import('./pages/DarcekovyPoukaz'));
+const Psychotesty = lazy(() => import('./pages/Psychotesty'));
+const ZakladnyKurz = lazy(() => import('./pages/ZakladnyKurz'));
+const TeoretickaPriprava = lazy(() => import('./pages/TeoretickaPriprava'));
+const Teambuilding = lazy(() => import('./pages/Teambuilding'));
+const Upload = lazy(() => import('./pages/Upload'));
 
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 
@@ -102,6 +102,7 @@ export default function App() {
         <PageTracker />
         <LanguageSync />
         <ScrollToTop />
+              <Suspense fallback={<div className="min-h-screen bg-[var(--color-tactical)]" aria-busy="true" />}>
               <Routes>
                 {/* Redirect root to current language */}
                 <Route path="/" element={<RootRedirect />} />
@@ -135,6 +136,7 @@ export default function App() {
                 </Route>
                 <Route path="*" element={<NotFoundRedirect />} />
               </Routes>
+              </Suspense>
       </Router>
     </LanguageProvider>
   );

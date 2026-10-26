@@ -21,7 +21,7 @@ export default function Kontakt() {
         <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
           <motion.img 
             style={{ y: backgroundY }}
-            src="/hunterclub5.webp" 
+            src="/performance/hunterclub5-1600.webp"
             alt="Background" 
             className="w-full h-[130vh] object-cover opacity-40"
             referrerPolicy="no-referrer"

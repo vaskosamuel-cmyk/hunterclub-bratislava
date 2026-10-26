@@ -1,12 +1,37 @@
-@import "@fontsource/inter/400.css";
-@import "@fontsource/inter/500.css";
-@import "@fontsource/inter/600.css";
-@import "@fontsource/inter/700.css";
-@import "@fontsource/bebas-neue/400.css";
-@import "@fontsource/oswald/400.css";
-@import "@fontsource/oswald/500.css";
-@import "@fontsource/oswald/600.css";
-@import "@fontsource/oswald/700.css";
+@import "@fontsource/inter/latin-400.css";
+@import "@fontsource/inter/latin-ext-400.css";
+@import "@fontsource/inter/cyrillic-400.css";
+@import "@fontsource/inter/cyrillic-ext-400.css";
+@import "@fontsource/inter/latin-500.css";
+@import "@fontsource/inter/latin-ext-500.css";
+@import "@fontsource/inter/cyrillic-500.css";
+@import "@fontsource/inter/cyrillic-ext-500.css";
+@import "@fontsource/inter/latin-600.css";
+@import "@fontsource/inter/latin-ext-600.css";
+@import "@fontsource/inter/cyrillic-600.css";
+@import "@fontsource/inter/cyrillic-ext-600.css";
+@import "@fontsource/inter/latin-700.css";
+@import "@fontsource/inter/latin-ext-700.css";
+@import "@fontsource/inter/cyrillic-700.css";
+@import "@fontsource/inter/cyrillic-ext-700.css";
+@import "@fontsource/bebas-neue/latin-400.css";
+@import "@fontsource/bebas-neue/latin-ext-400.css";
+@import "@fontsource/oswald/latin-400.css";
+@import "@fontsource/oswald/latin-ext-400.css";
+@import "@fontsource/oswald/cyrillic-400.css";
+@import "@fontsource/oswald/cyrillic-ext-400.css";
+@import "@fontsource/oswald/latin-500.css";
+@import "@fontsource/oswald/latin-ext-500.css";
+@import "@fontsource/oswald/cyrillic-500.css";
+@import "@fontsource/oswald/cyrillic-ext-500.css";
+@import "@fontsource/oswald/latin-600.css";
+@import "@fontsource/oswald/latin-ext-600.css";
+@import "@fontsource/oswald/cyrillic-600.css";
+@import "@fontsource/oswald/cyrillic-ext-600.css";
+@import "@fontsource/oswald/latin-700.css";
+@import "@fontsource/oswald/latin-ext-700.css";
+@import "@fontsource/oswald/cyrillic-700.css";
+@import "@fontsource/oswald/cyrillic-ext-700.css";
 @import "tailwindcss";
 
 @theme {
@@ -92,13 +117,4 @@ h1, h2, h3, h4, h5, h6 {
   h4 { font-size: calc(clamp(1rem, 0.66vw + 0.85rem, 1.375rem) * var(--display-scale)); }
   p { font-size: clamp(0.875rem, 0.44vw + 0.77rem, 1.125rem); }
   small { font-size: clamp(0.6875rem, 0.33vw + 0.61rem, 0.875rem); }
-}
-
-#root {
-  opacity: 0;
-  transition: opacity 0.4s ease-out;
-}
-
-#root.fonts-loaded {
-  opacity: 1;
 }

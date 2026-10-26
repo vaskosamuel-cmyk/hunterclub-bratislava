@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { VIDEO_POSTERS } from '../constants/videoPosters';
 import { Play } from 'lucide-react';
 import { fetchVideos, selectHeroVideos, VideoItem } from '../services/videoService';
 
@@ -6,6 +7,13 @@ interface Preview { url?: string; ratio: number; duration?: number }
 const previews = new Map<string, Promise<Preview>>();
 // Capture a real frame for existing uploads too; no new upload or backend migration is needed.
 function getPreview(item: VideoItem): Promise<Preview> {
+  const fixed = VIDEO_POSTERS[item.id];
+  if (fixed) return Promise.resolve(fixed);
+  if (item.posterUrl && item.width && item.height) return Promise.resolve({ url: item.posterUrl, ratio: item.width / item.height, duration: item.duration });
+  try {
+    const cached = sessionStorage.getItem(`hc-preview:${item.videoUrl}`);
+    if (cached) return Promise.resolve(JSON.parse(cached));
+  } catch { /* Preview caching is optional. */ }
   if (!previews.has(item.videoUrl)) previews.set(item.videoUrl, new Promise(resolve => {
     const media = document.createElement('video');
     media.crossOrigin = 'anonymous'; media.muted = true; media.playsInline = true; media.preload = 'auto';
@@ -13,7 +21,10 @@ function getPreview(item: VideoItem): Promise<Preview> {
     const finish = (url?: string) => {
       if (settled) return; settled = true; clearTimeout(timeout);
       media.onloadedmetadata = media.onloadeddata = media.onseeked = media.onerror = null;
-      media.removeAttribute('src'); media.load(); resolve({ url: item.posterUrl || url, ratio, duration });
+      media.removeAttribute('src'); media.load();
+      const preview = { url: item.posterUrl || url, ratio, duration };
+      if (preview.url) try { sessionStorage.setItem(`hc-preview:${item.videoUrl}`, JSON.stringify(preview)); } catch { /* Storage can be full. */ }
+      resolve(preview);
     };
     const capture = () => {
       if (!media.videoWidth || media.readyState < 2) return;
@@ -37,9 +48,9 @@ function getPreview(item: VideoItem): Promise<Preview> {
   return previews.get(item.videoUrl)!;
 }
 export function usePreview(item?: VideoItem) {
-  const [result, setResult] = useState<Preview>({ ratio: 9 / 16 });
+  const [result, setResult] = useState<Preview>(() => item && VIDEO_POSTERS[item.id] || { url: item?.posterUrl, ratio: item?.width && item.height ? item.width / item.height : 9 / 16 });
   useEffect(() => {
-    let active = true; setResult({ url: item?.posterUrl, ratio: 9 / 16 });
+    let active = true; setResult(item && VIDEO_POSTERS[item.id] || { url: item?.posterUrl, ratio: item?.width && item.height ? item.width / item.height : 9 / 16 });
     if (item) void getPreview(item).then(value => { if (active) setResult(value); });
     return () => { active = false; };
   }, [item?.videoUrl, item?.posterUrl]);
@@ -53,7 +64,7 @@ function VideoChoice({ item, selected, onClick }: { item: VideoItem; selected: b
   return <button type="button" onClick={onClick} aria-label={item.title} aria-pressed={selected}
     className={`hc-video-choice group ${selected ? 'is-selected' : ''}`}>
     <span className="hc-choice-media">
-    {preview.url ? <img src={preview.url} alt="" /> : <video src={`${item.videoUrl}#t=0.1`} muted playsInline preload="metadata" aria-hidden="true" />}
+    {preview.url ? <img src={preview.url} alt="" /> : <span aria-hidden="true" />}
     <span className="hc-choice-shade" />
     <span className="hc-choice-play"><Play size={17} fill="currentColor" /></span>
     <span className="hc-choice-duration">{durationLabel(preview.duration || item.duration)}</span>
@@ -112,7 +123,7 @@ export default function OwnerVideoPlayer({ className = '' }: { className?: strin
     <div className="min-w-0">
       <div className="hc-video-stage" aria-label={current?.title || 'Video'}>
         {preview.url && preview.ratio >= 1 && <div className="hc-video-blur" style={{ backgroundImage: `url("${preview.url}")` }} />}
-        {current && <video ref={player} key={current.id} src={current.videoUrl} poster={preview.url || current.posterUrl} controls playsInline preload="metadata"
+        {current && <video ref={player} key={current.id} src={current.videoUrl} poster={preview.url || current.posterUrl} controls playsInline preload="none"
           onPlay={() => setPaused(false)} onPause={() => setPaused(true)} onEnded={() => setPaused(true)}
           onError={() => setFailed(true)} aria-label={current.title} />}
         {current && paused && !failed && <button type="button" className="hc-video-start" aria-label={`Prehrať: ${current.title}`} onClick={() => { void player.current?.play().catch(() => setFailed(true)); }}><Play size={28} fill="currentColor" className="ml-1" /></button>}

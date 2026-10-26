@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useState, useContext, useEffect, useCallback } from 'react';
 import { translations } from '../i18n/translations';
 
 type Language = 'sk' | 'de' | 'en' | 'ru';
@@ -28,9 +28,9 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     document.documentElement.lang = language;
   }, [language]);
 
-  const setLanguage = (lang: Language) => {
+  const setLanguage = useCallback((lang: Language) => {
     setLanguageState(lang);
-  };
+  }, []);
 
   const t = (key: string, options?: { returnObjects?: boolean }): any => {
     const keys = key.split('.');

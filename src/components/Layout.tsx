@@ -1,7 +1,8 @@
 import NewsTicker from './NewsTicker';
+import { languagePath, Language } from '../utils/languagePath';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, MapPin, Phone, Mail, ChevronRight, MessageSquare, ChevronDown, Globe } from 'lucide-react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Suspense } from 'react';
 import { clsx } from 'clsx';
 import { motion, AnimatePresence } from 'motion/react';
 import Link from './Link';
@@ -12,29 +13,28 @@ function TrustBox() {
   const ref = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
-    const loadWidget = () => {
-      if (typeof window !== 'undefined' && (window as any).Trustpilot && ref.current) {
-        try {
-          (window as any).Trustpilot.loadFromElement(ref.current, true);
-        } catch (e) {
-          console.error("Trustpilot load error", e);
-        }
-      }
+    const element = ref.current;
+    if (!element) return;
+    let active = true;
+    const initialize = () => {
+      if (active && (window as any).Trustpilot) (window as any).Trustpilot.loadFromElement(element, true);
     };
-
-    loadWidget();
-    
-    let attempts = 0;
-    const interval = setInterval(() => {
-      if ((window as any).Trustpilot) {
-        loadWidget();
-        clearInterval(interval);
+    const load = () => {
+      if ((window as any).Trustpilot) { initialize(); return; }
+      let script = document.querySelector<HTMLScriptElement>('script[data-trustpilot]');
+      if (!script) {
+        script = document.createElement('script');
+        script.src = 'https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
+        script.async = true; script.dataset.trustpilot = ''; script.dataset.cookieconsent = 'ignore';
+        document.head.appendChild(script);
       }
-      attempts++;
-      if (attempts > 10) clearInterval(interval);
-    }, 500);
-
-    return () => clearInterval(interval);
+      script.addEventListener('load', initialize, { once: true });
+    };
+    const observer = new IntersectionObserver(entries => {
+      if (entries.some(entry => entry.isIntersecting)) { observer.disconnect(); load(); }
+    }, { rootMargin: '300px' });
+    observer.observe(element);
+    return () => { active = false; observer.disconnect(); };
   }, []);
 
   return (
@@ -63,19 +63,12 @@ export default function Layout() {
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState<Record<string, boolean>>({});
   const location = useLocation();
   const navigate = useNavigate();
-  const { language, setLanguage, t } = useLanguage();
+  const { language, t } = useLanguage();
 
-  const handleLanguageChange = (lang: string) => {
-    setLanguage(lang as any);
+  const handleLanguageChange = (lang: Language) => {
     setIsLangOpen(false);
-    
-    const parts = location.pathname.split('/');
-    if (['sk', 'en', 'de'].includes(parts[1])) {
-      parts[1] = lang;
-      navigate(parts.join('/') + location.search, { replace: true });
-    } else {
-      navigate(`/${lang}${location.pathname}${location.search}`, { replace: true });
-    }
+    // The URL is the source of truth; LanguageSync updates the context afterwards.
+    navigate(languagePath(location.pathname, lang, location.search, location.hash), { replace: true });
   };
 
   useEffect(() => {
@@ -374,7 +367,7 @@ export default function Layout() {
       </header>
 
       <main className="flex-grow pt-10 md:pt-12">
-        <Outlet />
+        <Suspense fallback={<div className="min-h-[50svh]" aria-busy="true" />}><Outlet /></Suspense>
       </main>
 
       {/* Shooting Counselor Widget */}
