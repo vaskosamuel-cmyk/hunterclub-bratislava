@@ -102,9 +102,10 @@ export default function SportClub() {
                   <div className="relative pl-12">
                     <div className="absolute left-0 top-0 w-8 h-8 rounded-lg bg-[var(--color-safety)] text-[var(--color-tactical)] flex items-center justify-center font-display font-bold text-xl italic">1</div>
                     <h3 className="text-2xl font-display mb-3 text-white uppercase italic">{t('klub.step1Title')}</h3>
-                    <p className="text-gray-300 mb-6 leading-relaxed">
+                    <p className="text-gray-300 mb-3 leading-relaxed">
                       {t('klub.step1Desc')}
                     </p>
+                    <p className="text-gray-300 mb-6 leading-relaxed">{t('klub.membershipPeriod')}</p>
                     <a 
                       href="/images/packages/Prihláška HDI nová 2025.pdf" 
                       onClick={handleDownload}
@@ -155,9 +156,9 @@ export default function SportClub() {
                     </div>
                     <div className="bg-black/20 p-6 rounded-xl border border-[var(--color-safety)]/30 relative overflow-hidden">
                       <div className="absolute top-0 right-0 bg-[var(--color-safety)] text-black text-xs font-black px-3 py-1 uppercase tracking-tighter">{t('klub.deadline')}</div>
-                      <h4 className="text-white/60 text-xs font-bold uppercase tracking-widest mb-2 mt-4">{t('klub.fee2026')}</h4>
+                      <h4 className="text-white text-xl sm:text-2xl font-display uppercase italic leading-tight mb-2 mt-4">{t('klub.fee2027')}</h4>
                       <div className="text-3xl font-display text-white italic">40€</div>
-                      <p className="text-white/40 text-[10px] mt-2 uppercase">{t('klub.fee2026Sub')}</p>
+                      <p className="text-white/40 text-[10px] mt-2 uppercase">{t('klub.fee2027Sub')}</p>
                     </div>
                   </div>
 
