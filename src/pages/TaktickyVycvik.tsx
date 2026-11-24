@@ -147,7 +147,7 @@ export default function TaktickyVycvik() {
                       </div>
                       <div className="flex items-center gap-3">
                         <Phone className="w-5 h-5 text-[var(--color-safety)]" />
-                        <span className="text-sm font-bold text-white">+421 902 630 643</span>
+                        <span className="text-sm font-bold text-white"><a href="tel:+421902630643">+421 902 630 643</a></span>
                       </div>
                     </div>
                   </div>

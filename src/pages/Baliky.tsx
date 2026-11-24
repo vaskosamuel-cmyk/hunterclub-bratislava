@@ -148,7 +148,7 @@ export default function Baliky() {
             key={index}
             href="tel:+421911650032"
             className="text-[var(--color-safety)] hover:text-yellow-300 font-bold underline underline-offset-4 transition-colors inline-block"
-            title="Zavolať na 0911 650 032"
+            title="Zavolať na +421 911 650 032"
           >
             {part}
           </a>

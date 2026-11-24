@@ -12,19 +12,19 @@ export default function SportClub() {
   const handleDownload = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     try {
-      const response = await fetch('/images/packages/Prihláška HDI nová 2025.pdf');
+      const response = await fetch('/images/packages/Prihlaska-HDI.pdf');
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      link.download = 'Prihlaska-HDI-nova-2025.pdf';
+      link.download = 'Prihlaska-HDI.pdf';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
     } catch (error) {
       console.error('Error downloading PDF:', error);
-      window.open('/images/packages/Prihláška HDI nová 2025.pdf', '_blank');
+      window.open('/images/packages/Prihlaska-HDI.pdf', '_blank');
     }
   };
 
@@ -105,9 +105,9 @@ export default function SportClub() {
                     <p className="text-gray-300 mb-3 leading-relaxed">
                       {t('klub.step1Desc')}
                     </p>
-                    <p className="text-gray-300 mb-6 leading-relaxed">{t('klub.membershipPeriod')}</p>
+                    <p className="text-white font-bold mb-6 leading-relaxed">{t('klub.membershipPeriod')}</p>
                     <a 
-                      href="/images/packages/Prihláška HDI nová 2025.pdf" 
+                      href="/images/packages/Prihlaska-HDI.pdf" 
                       onClick={handleDownload}
                       className="inline-flex items-center gap-2 sm:gap-3 bg-white/5 border border-white/10 hover:bg-white/10 text-white px-4 sm:px-8 py-3 sm:py-4 rounded-xl font-bold uppercase tracking-wider sm:tracking-widest text-xs sm:text-sm transition-all group/btn flex-wrap"
                     >
@@ -150,9 +150,9 @@ export default function SportClub() {
                 <div className="space-y-8 flex-grow">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="bg-black/20 p-6 rounded-xl border border-white/5">
-                      <h4 className="text-white/60 text-xs font-bold uppercase tracking-widest mb-2">{t('klub.fee2025')}</h4>
+                      <h4 className="text-white/60 text-xs font-bold uppercase tracking-widest mb-2">{t('klub.fee2026')}</h4>
                       <div className="text-3xl font-display text-[var(--color-safety)] italic">40€</div>
-                      <p className="text-white/40 text-[10px] mt-2 uppercase">{t('klub.fee2025Sub')}</p>
+                      <p className="text-white/40 text-[10px] mt-2 uppercase">{t('klub.fee2026Sub')}</p>
                     </div>
                     <div className="bg-black/20 p-6 rounded-xl border border-[var(--color-safety)]/30 relative overflow-hidden">
                       <div className="absolute top-0 right-0 bg-[var(--color-safety)] text-black text-xs font-black px-3 py-1 uppercase tracking-tighter">{t('klub.deadline')}</div>
@@ -245,13 +245,13 @@ export default function SportClub() {
                 <div>
                   <p className="text-white font-bold">Ing. Miroslav Chrenko</p>
                   <p className="text-[10px] uppercase text-[var(--color-safety)] tracking-widest mb-1">{t('klub.president')}</p>
-                  <a href="tel:0904650035" className="text-lg hover:text-[var(--color-safety)] transition-colors">0904 650 035</a>
+                  <a href="tel:+421904650035" className="text-lg hover:text-[var(--color-safety)] transition-colors">+421 904 650 035</a>
                 </div>
                 <div className="w-12 h-px bg-white/10 mx-auto"></div>
                 <div>
                   <p className="text-white font-bold">Juraj Hodul</p>
                   <p className="text-[10px] uppercase text-[var(--color-safety)] tracking-widest mb-1">{t('klub.vicePresident')}</p>
-                  <a href="tel:0902630643" className="text-lg hover:text-[var(--color-safety)] transition-colors">0902 630 643</a>
+                  <a href="tel:+421902630643" className="text-lg hover:text-[var(--color-safety)] transition-colors">+421 902 630 643</a>
                 </div>
               </div>
             </motion.div>

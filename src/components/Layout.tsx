@@ -520,9 +520,9 @@ export default function Layout() {
                     <Phone className="w-4 h-4 text-[var(--color-safety)]" />
                   </div>
                   <div className="text-sm flex flex-col pt-1">
-                    <a href="tel:0911650032" className="text-white hover:text-[var(--color-safety)] transition-colors mb-1">0911 650 032</a>
-                    <span className="text-xs">Miroslav Chrenko [DE]: 0904 650 035</span>
-                    <span className="text-xs">Juraj Hodul [EN]: 0902 630 643</span>
+                    <a href="tel:+421911650032" className="text-white hover:text-[var(--color-safety)] transition-colors mb-1">+421 911 650 032</a>
+                    <span className="text-xs">Miroslav Chrenko [DE]: <a href="tel:+421904650035">+421 904 650 035</a></span>
+                    <span className="text-xs">Juraj Hodul [EN]: <a href="tel:+421902630643">+421 902 630 643</a></span>
                   </div>
                 </li>
                 <li className="flex items-center gap-3 text-gray-400 group">

@@ -149,7 +149,7 @@ export default function Kontakt() {
                 <Phone className="w-6 h-6 text-[var(--color-safety)] shrink-0" />
                 <div>
                   <h4 className="font-bold mb-1 text-white">{t('kontakt.phoneTitle')}</h4>
-                  <p className="text-gray-300">+421 911 650 032</p>
+                  <p className="text-gray-300"><a href="tel:+421911650032">+421 911 650 032</a></p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
